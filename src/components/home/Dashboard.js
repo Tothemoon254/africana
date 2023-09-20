@@ -29,7 +29,7 @@ function Dashboard() {
               </h1>
 
               <Link to="/write"
-              className="bg-[#5bdfdf] py-3 mt-6 px-3 rounded-xl text-xl border-2 border-black">
+              className="bg-[#5bdfdf] py-3 mt-6 px-3 rounded-xl text-xl shadow-2xl border-2 border-black">
                 Start writing
               </Link>
             </div>
