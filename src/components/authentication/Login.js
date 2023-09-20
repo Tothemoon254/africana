@@ -14,18 +14,18 @@ import {
 } from "@chakra-ui/react";
 
 // Context
-import { useAuth } from "../../contexts/AuthContext";
+import { UserAuth } from "../../contexts/AuthContext";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
-  const { login } = useAuth();
+  const { signIn } = UserAuth();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const toast = useToast();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,15 +33,14 @@ function Login() {
     try {
       setError("");
       setLoading(true);
-      await login(email, pwd);
-
+      await signIn(email, pwd)
       toast({
         title: "Logged in successfully",
         status: "success",
         duration: 5000,
       });
 
-      history.push("/");
+      navigate("/");
     } catch (err) {
       console.log(err);
       setError(err.message);

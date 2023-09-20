@@ -14,13 +14,13 @@ import {
 import Nav from "../layout/Nav";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAuth } from "../../contexts/AuthContext";
+import { UserAuth } from "../../contexts/AuthContext";
 import { useFirebase } from "../../contexts/FirebaseContext";
 
 import { v4 as uuidv4 } from "uuid";
 
 function WriteArticle() {
-  const { currentUser } = useAuth();
+  const { user } = UserAuth();
   const { postArticle } = useFirebase();
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
@@ -44,9 +44,9 @@ function WriteArticle() {
       setLoading(true);
       await postArticle({
         articleID: uuidv4(),
-        authorID: currentUser.uid,
-        authorEmail: currentUser.email,
-        authorUsername: `@${currentUser.email.split("@")[0]}`,
+        authorID: user.uid,
+        authorEmail: user.email,
+        authorUsername: user.displayName,
         content: {
           title,
           subtitle,
@@ -91,7 +91,7 @@ function WriteArticle() {
             Write your heart out!
           </Text>
           <Text fontSize={["sm", "md"]} textAlign="center" color="blue.500">
-            writing as {`@${currentUser.email.split("@")[0]}`}
+            writing as {user.displayName}
           </Text>
 
           <Textarea

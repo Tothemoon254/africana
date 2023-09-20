@@ -1,19 +1,22 @@
-import logo from './logo.svg';
 import { AuthContextProvider } from './contexts/AuthContext';
+import { FirebaseProvider } from "./contexts/FirebaseContext";
 import ProtectedRoute from './components/Protectedroute';
-import './App.css';
+import {Routes, Route } from 'react-router-dom';
 import Dashboard from "./components/home/Dashboard";
 import WriteArticle from "./components/home/WriteArticle";
 import MyArticles from "./components/home/MyArticles";
 import ViewArticle from "./components/home/ViewArticle";
 import EditArticle from "./components/home/EditArticle";
+import Signup from './components/authentication/Signup'
+import Login from "./components/authentication/Login";
 
 function App() {
   return (
     <div className="App">
      <div>
+     
       <AuthContextProvider>
-
+      <FirebaseProvider>
         
        
           
@@ -23,13 +26,19 @@ function App() {
           <Route
             path='/'
             element={
-              <ProtectedRoute>
+              
                 <Dashboard />
-              </ProtectedRoute>
+            
             }
           />
+
+
+          <Route path="/signup" element={ <Signup/> } />
+          <Route path="/login" element={ <Login/> } />
+
+
           <Route
-            path='/writeArticles'
+            path='/write'
             element={
               <ProtectedRoute>
                 <WriteArticle />
@@ -78,8 +87,9 @@ function App() {
           />
            
         </Routes>
-        
+        </FirebaseProvider>
       </AuthContextProvider>
+  
       
     </div>
 

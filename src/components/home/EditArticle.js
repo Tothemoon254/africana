@@ -14,7 +14,7 @@ import {
 import Nav from "../layout/Nav";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAuth } from "../../contexts/AuthContext";
+import { UserAuth } from "../../contexts/AuthContext";
 import { useFirebase } from "../../contexts/FirebaseContext";
 
 import { v4 as uuidv4 } from "uuid";
@@ -22,7 +22,7 @@ import LoadingSmall from "../layout/LoadingSmall";
 
 function EditArticle() {
   const articleIDFromURL = window.location.href.split("/").pop();
-  const { currentUser } = useAuth();
+  const { currentUser } = UserAuth();
   const { editArticle, getSpecificArticle } = useFirebase();
   const [article, setArticle] = useState([]);
   const [title, setTitle] = useState("");

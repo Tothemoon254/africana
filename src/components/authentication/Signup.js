@@ -14,19 +14,19 @@ import {
 } from "@chakra-ui/react";
 
 // Context
-import { useAuth } from "../../contexts/AuthContext";
+import { UserAuth } from "../../contexts/AuthContext";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
-  const { signup } = useAuth();
+  const { createUser } = UserAuth();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [confirmPwd, setConfirmPwd] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const toast = useToast();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ function Signup() {
     try {
       setError("");
       setLoading(true);
-      await signup(email, pwd);
+      await createUser(email, pwd);
 
       toast({
         title: "Account successfully created",
@@ -52,7 +52,7 @@ function Signup() {
         duration: 5000,
       });
 
-      history.push("/");
+      navigate("/");
     } catch (err) {
       console.log(err);
       setError(err.message);
@@ -68,14 +68,14 @@ function Signup() {
   };
 
   return (
-    <Box
+    <Box className="w-[100%] h-[100vh] flex justify-center content-center"
       w="100%"
       h="100vh"
       d="flex"
       justifyContent="center"
       alignContent="center"
     >
-      <Box
+      <Box className="flex w-[100vw] h-[100vh] justify-center items-center text-center flex-col"
         d="flex"
         w={["100vw", null, null, "40vw"]}
         h="100vh"
@@ -121,23 +121,21 @@ function Signup() {
             />
           </FormControl>
 
-          <Button
-            w="100%"
-            mt={4}
-            py={6}
-            colorScheme="blue"
+          <button
+          className="bg-blue-700 w-[100%] mt-4 py-6 text-xl text-black"
+      
             onClick={handleSubmit}
             isLoading={loading}
           >
             Sign Up
-          </Button>
+          </button>
         </Box>
-        <Text mt={8} fontWeight="normal" fontSize="lg">
+        <h1 className="mt-8 font-normal text-lg">
           Already have an account?{" "}
           <Link to="/login">
             <ChakraLink color="blue.400">Login</ChakraLink>
           </Link>
-        </Text>
+        </h1>
       </Box>
 
       <Box

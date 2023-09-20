@@ -20,17 +20,24 @@ function SuggestedArticles() {
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(async () => {
-    try {
-      setLoading(true);
-      const data = await getAllPublicArticles();
-      setArticles(data.docs.map((el) => el.data()));
-      setFilteredArticles(data.docs.map((el) => el.data()));
-    } catch (err) {
-      console.log(err);
-    }
-    setLoading(false);
-  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getAllPublicArticles();
+        // Assuming getAllPublicArticles returns a Firestore query snapshot
+        setArticles(data.docs.map((el) => el.data()));
+        setFilteredArticles(data.docs.map((el) => el.data()));
+      } catch (err) {
+        console.error(err);
+      }
+      setLoading(false);
+    };
+  
+    // Call the fetchData function inside the useEffect
+    fetchData();
+  }, []); // The empty dependency array means this effect runs once, similar to componentDidMount
+  
 
   const getDate = (timestamp) => {
     const d = new Date(timestamp);
@@ -50,25 +57,22 @@ function SuggestedArticles() {
   };
 
   return (
-    <Box mx={["6", "10"]}>
-      <Text fontSize={["2xl", "3xl"]}>Recently posted articles</Text>
+    <div className="mx-[24px] sm:mx-[64px]">
+      <span className="text-2xl sm:text-3xl">Recently posted articles</span>
 
-      <Box my={[4, null, null, 8]}>
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            children={<SearchIcon color="gray.400" />}
-            mt="4px"
-            ml="4px"
-          />
-          <Input
+      <div className="my-[16px] sm:my-[32px]">
+        <div  className="border-black border-2 h-[48px] w-[75%] p-3">
+         <SearchIcon color='#000000'/>
+          <input
+          className="bg-transparent text-black px-3"
             type="text"
+            color="#000000"
             placeholder="Search for articles"
-            height={"48px"}
             onChange={(e) => handleSearch(e)}
+           
           />
-        </InputGroup>
-      </Box>
+        </div>
+      </div>
 
       {loading ? (
         <LoadingSmall />
@@ -132,7 +136,7 @@ function SuggestedArticles() {
           ))}
         </Box>
       )}
-    </Box>
+    </div>
   );
 }
 

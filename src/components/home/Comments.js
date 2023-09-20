@@ -14,13 +14,13 @@ import Nav from "../layout/Nav";
 import LoadingSmall from "../layout/LoadingSmall";
 
 import { useFirebase } from "../../contexts/FirebaseContext";
-import { useAuth } from "../../contexts/AuthContext";
+import { UserAuth } from "../../contexts/AuthContext";
 
 const Comments = () => {
   const articleIDFromURL = window.location.href.split("/").pop();
   const { postComment, getComments, getSpecificArticle, deleteComment } =
     useFirebase();
-  const { currentUser } = useAuth();
+  const { currentUser } = UserAuth();
   const [loading, setLoading] = useState(false);
   const [commentBtnLoading, setCommentBtnLoading] = useState(false);
 

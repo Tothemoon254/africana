@@ -1,73 +1,49 @@
-import React, { useState, useEffect } from "react";
-import { useAuth } from "../../contexts/AuthContext";
-import { useFirebase } from "../../contexts/FirebaseContext";
-import { database } from "../../firebase";
+import React from "react";
 
-import { Box, Text, Image, Button, Divider } from "@chakra-ui/react";
-import treeSwingImage from "../../assets/tree-swing2.svg";
+
+import AfricanaLogo from '../../assets/AfricanaLogo.svg'
 
 import { Link } from "react-router-dom";
 
-import Nav from "../layout/Nav";
+import Nav from '../layout/Nav';
 import RecentArticles from "./RecentArticles";
 import Footer from "../layout/Footer";
 
 function Dashboard() {
-  const { currentUser } = useAuth();
+  
 
   return (
-    <Box d="flex" justifyContent="center" alignItems="center">
-      <Box
-        w={["100vw", null, null, "70vw"]}
-        d="flex"
-        justifyContent="center"
-        flexDirection="column"
-      >
+    <div className="flex justify-center items-center bg-[#FD8D14]" >
+      <div className="w-[100vw] flex justify-center flex-col">
         <Nav />
 
-        <Box px={["6", "10"]}>
-          <Box
-            d="flex"
-            justifyContent="space-between"
-            flexDirection={["column-reverse", null, "row"]}
-          >
-            <Box
-              d="flex"
-              justifyContent="center"
-              alignItems="flex-start"
-              flexDirection="column"
-            >
-              <Text fontSize={["4xl", "5xl"]} mt={["6", null, "none"]}>
-                A place to write, read, and connect
-              </Text>
-              <Text fontSize={["lg", "xl"]} mt="4">
-                It's easy and free to post your thinking on any topic and
+        <div className="px-6" >
+          <div className="flex justify-between flex-col-reverse">
+            <div className="flex justify-center items-start flex-col">
+              <h1 className="mt-6 text-4xl">
+                A place to read and tell of the millions of stories africa has to tell.
+              </h1>
+              <h1 className="text-lg mt-4">
+                It's easy and free to tell your story and
                 connect with millions of readers.
-              </Text>
+              </h1>
 
-              <Button
-                as={Link}
-                to="/write"
-                colorScheme="blue"
-                isFullWidth
-                py="8"
-                mt="6"
-                fontSize="xl"
-              >
+              <Link to="/write"
+              className="bg-[#5bdfdf] py-3 mt-6 px-3 rounded-xl text-xl border-2 border-black">
                 Start writing
-              </Button>
-            </Box>
-            <Box px="8" d="flex" justifyContent="center" alignItems="center">
-              <Image src={treeSwingImage} />
-            </Box>
-          </Box>
-          <Divider my={["10", "16"]} />
-        </Box>
+              </Link>
+            </div>
+            <div className="px-8 flex justify-center items-center">
+              <img src={AfricanaLogo} alt="logo" className="h-[600px]" />
+            </div>
+          </div>
+          <div className="border-b-2 border-b-black my-8"></div>
+        </div>
 
         <RecentArticles />
         <Footer />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 
