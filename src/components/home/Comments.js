@@ -61,8 +61,12 @@ const Comments = () => {
     setLoading(false);
   };
 
-  useEffect(fetchComments, []);
-  useEffect(fetchArticle, []);
+  useEffect(() => {
+    fetchComments();
+  }, []); 
+  useEffect(() => {
+    fetchArticle();
+  }, []); 
 
   const handlePostComment = async () => {
     if (!comment) {

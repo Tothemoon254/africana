@@ -18,9 +18,9 @@ function Dashboard() {
         <Nav />
 
         <div className="px-6" >
-          <div className="flex justify-between flex-col-reverse">
+          <div className="flex justify-between flex-col-reverse sm:flex-row">
             <div className="flex justify-center items-start flex-col">
-              <h1 className="mt-6 text-4xl">
+              <h1 className="mt-6 text-4xl font-bold">
                 A place to read and tell of the millions of stories africa has to tell.
               </h1>
               <h1 className="text-lg mt-4">
@@ -29,7 +29,7 @@ function Dashboard() {
               </h1>
 
               <Link to="/write"
-              className="bg-[#5bdfdf] py-3 mt-6 px-3 rounded-xl text-xl shadow-2xl border-2 border-black">
+               class='shadow-custom bg-[#5bdfdf] py-3 mt-6 px-3 text-xl border-2 border-black'>
                 Start writing
               </Link>
             </div>

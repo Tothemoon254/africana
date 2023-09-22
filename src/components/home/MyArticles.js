@@ -47,7 +47,9 @@ function MyArticles() {
     setLoading(false);
   };
 
-  useEffect(fetchArticles, []);
+  useEffect(() => {
+    fetchArticles();
+  }, []);
 
   const handleDelete = async (docID, i) => {
     try {
@@ -83,21 +85,19 @@ function MyArticles() {
   };
 
   return (
-    <Box d="flex" justifyContent="center" alignItems="center">
-      <Box
-        w={["100vw", null, null, "70vw"]}
-        d="flex"
-        justifyContent="center"
-        flexDirection="column"
+    <div className="flex justify-center items-center bg-[#FD8D14]">
+      <div
+      className="w-[100vw] md:w-[70vw] flex flex-col"
+    
       >
         <Nav />
         {loading ? (
           <LoadingSmall />
         ) : (
-          <Box mx={["6", "10"]}>
-            <Text fontSize={["2xl", "3xl"]}>Articles you have written</Text>
+          <div className="mx-6 sm:mx-10">
+            <h1 className="text-2xl sm:text-3xl">Articles you have written</h1>
 
-            <Box d="flex" justifyContent="center" alignItems="center">
+            <div className="flex justify-center items-center">
               <Spacer />
 
               <Select
@@ -111,24 +111,17 @@ function MyArticles() {
                 <option value="public">Public articles</option>
                 <option value="private">Private articles</option>
               </Select>
-            </Box>
+            </div>
 
-            <Box
-              mt="6"
-              mb="10"
-              d="flex"
-              justifyContent="center"
-              flexDirection="column"
-            >
+            <div
+            className="mt-6 mb-10 flex justify-center flex-col">
               {filteredArticles.map((el, i) => {
                 return (
                   <>
-                    <Box
-                      d="flex"
-                      justifyContent="center"
-                      flexDirection="column"
-                      alignItems="flex-start"
-                      as={Link}
+                    <Link
+                    className="flex justify-center flex-col items-start"
+                   
+              
                       to={`/article/${el.articleID}`}
 
                       // boxShadow="md"
@@ -155,50 +148,44 @@ function MyArticles() {
                           Public
                         </Badge>
                       )}
-                      <Text fontSize={["xl", "2xl"]}>{el.content.title}</Text>
-                      <Text fontSize={["lg", "xl"]} opacity="0.5">
+                      <h2 className="text-xl sm:text-2xl">{el.content.title}</h2>
+                      <h3 className="text-lg sm:text-xl opacity-[50%]">
                         {el.content.subtitle}
-                      </Text>
-                      <Box d="flex" mt="4">
+                      </h3>
+                      <div className="flex mt-4">
                         {el.visibility === "private" ? (
                           ""
                         ) : (
                           <>
-                            <Box
-                              d="flex"
-                              flexDirection="row"
-                              alignItems="center"
-                              mr="2"
+                            <div
+                            className="flex flex-row items-center mr-2"
+        
                               // mt={[2, null, 0]}
                             >
-                              <Text
-                                fontWeight="semibold"
-                                color="yellow.500"
-                                fontSize={["md", "lg"]}
+                              <span
+                              className="font-semibold text-yellow-500 text-md sm:text-lg"
                               >
                                 {el.stars}
-                              </Text>
+                              </span>
                               <StarIcon
                                 color="yellow.500"
                                 fontSize={["md", "lg"]}
                                 ml="2"
                               />
-                            </Box>
+                            </div>
                           </>
                         )}
-                        <Text fontSize={["md", "lg"]} mr="2" color="blue.500">
+                        <span className="text-md sm:text-lg mr-2 text-blue-500">
                           {el.authorUsername}
-                        </Text>
-                        <Text
-                          fontSize={["md", "lg"]}
-                          opacity="0.6"
-                          fontWeight="light"
+                        </span>
+                        <span
+                        className="text-md sm:text-lg opacity-[60%] font-light"
                         >
                           {getDate(el.when).slice(4, 21)}
-                        </Text>
-                      </Box>
-                    </Box>
-                    <Box d="flex">
+                        </span>
+                      </div>
+                    </Link>
+                    <div className="flex">
                       <Spacer d={["none", null, "block"]} />
                       {/* {setBtnLoading([...btnLoading, false])} */}
 
@@ -225,16 +212,16 @@ function MyArticles() {
                       >
                         Delete
                       </Button>
-                    </Box>
-                    <Divider my="6" />
+                    </div>
+                    <div className="border-b-2 border-b-black my-6" />
                   </>
                 );
               })}
-            </Box>
-          </Box>
+            </div>
+          </div>
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 

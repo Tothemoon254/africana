@@ -30,13 +30,13 @@ function SuggestedArticles() {
         setFilteredArticles(data.docs.map((el) => el.data()));
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false); // Move setLoading(false) here to ensure it always gets called
       }
-      setLoading(false);
     };
-  
-    // Call the fetchData function inside the useEffect
+
     fetchData();
-  }, []); // The empty dependency array means this effect runs once, similar to componentDidMount
+  }, []); // Empty dependency array mea// The empty dependency array means this effect runs once, similar to componentDidMount
   
 
   const getDate = (timestamp) => {
@@ -55,7 +55,7 @@ function SuggestedArticles() {
     });
     setFilteredArticles(filteredResults);
   };
-
+console.log()
   return (
     <div className="mx-[24px] sm:mx-[64px]">
       <span className="text-2xl sm:text-3xl">Recently posted articles</span>

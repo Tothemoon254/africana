@@ -30,7 +30,7 @@ function Nav() {
     setWidth(window.screen.width);
   });
 
-  const { currentUser, logout } = UserAuth();
+  const { user, logout } = UserAuth();
 
   const handleLogout = async () => {
     setError("");
@@ -55,7 +55,7 @@ function Nav() {
   return (
     <>
       {/* <SideBar /> */}
-      <div className="py-10 px-6 w-[100%]">
+      <div className="py-10 px-6 w-[100%] border-b-2 border-b-black">
         <div className="flex justify-center">
           <Link
           className="text-3xl font-semibold"
@@ -76,7 +76,7 @@ function Nav() {
           
 
           <div className="ml-2">
-            {currentUser ? (
+            {user ? (
               <Menu placement="bottom-end">
                 {width > 768 ? (
                   <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
@@ -102,7 +102,7 @@ function Nav() {
                     {/* <MenuItem>Saved articles</MenuItem> */}
                   </MenuGroup>
                   <MenuDivider />
-                  <MenuGroup title={currentUser && currentUser.email}>
+                  <MenuGroup title={user && user.email}>
                     <MenuItem onClick={handleLogout}>Logout</MenuItem>
                   </MenuGroup>
                 </MenuList>

@@ -12,7 +12,8 @@ import {
   updateDoc,
   where,
   getDoc,
-  increment
+  increment,
+  QuerySnapshot
   
 } from "firebase/firestore";
 
@@ -24,7 +25,7 @@ export const useFirebase = () => {
 };
 
 export const FirebaseProvider = ({ children }) => {
-  const { currentUser } = UserAuth();
+  const { user } = UserAuth();
 
   const postArticle = async (data) => {
     const doc = collection(db, "articles");
@@ -57,7 +58,7 @@ export const FirebaseProvider = ({ children }) => {
         });
       });
   
-      return publicArticles;
+      return querySnapshot;
     } catch (error) {
       console.error("Error fetching public articles:", error);
       throw error; // You can choose to re-throw the error or handle it as needed
@@ -70,7 +71,7 @@ export const FirebaseProvider = ({ children }) => {
       const articlesCollection = collection(db, "articles");
       const q = query(
         articlesCollection,
-        where("authorID", "==", currentUser.uid),
+        where("authorID", "==", user.uid),
         orderBy("when", "desc")
       );
   
@@ -84,7 +85,7 @@ export const FirebaseProvider = ({ children }) => {
         });
       });
   
-      return myArticles;
+      return querySnapshot;
     } catch (error) {
       console.error("Error fetching my articles:", error);
       throw error; // You can choose to re-throw the error or handle it as needed
@@ -94,19 +95,23 @@ export const FirebaseProvider = ({ children }) => {
   const getSpecificArticle = async (articleID) => {
     try {
       const articlesCollection = collection(db, "articles");
-      const querySnapshot = await getDocs(
-        where(articlesCollection, "articleID", "==", articleID)
+      const q = query(articlesCollection, 
+        where("articleID", "==", articleID)
       );
+
+      const articleRef = doc(articlesCollection, articleID)
+      const article = await getDocs(q);
   
       const articles = [];
+/*      
       querySnapshot.forEach((doc) => {
         articles.push({
           id: doc.id,
           data: doc.data(),
         });
       });
-  
-      return articles;
+*/  
+      return article;
     } catch (error) {
       console.error("Error fetching specific article:", error);
       throw error; // You can choose to re-throw the error or handle it as needed
@@ -173,7 +178,7 @@ export const FirebaseProvider = ({ children }) => {
         });
       });
   
-      return comments;
+      return querySnapshot;
     } catch (error) {
       console.error("Error fetching comments:", error);
       throw error; // You can choose to re-throw the error or handle it as needed

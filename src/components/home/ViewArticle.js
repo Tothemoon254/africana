@@ -11,13 +11,15 @@ import {
 import { StarIcon, LinkIcon } from "@chakra-ui/icons";
 import Nav from "../layout/Nav";
 import LoadingSmall from "../layout/LoadingSmall";
+import { useParams } from "react-router-dom";
 
 import { useFirebase } from "../../contexts/FirebaseContext";
 
 import Comments from "./Comments";
 
 function ViewArticle() {
-  const articleIDFromURL = window.location.href.split("/").pop();
+//  const articleIDFromURL = window.location.href.split("/").pop();
+  const { articleID: articleIDFromURL } = useParams();
   const { getSpecificArticle, giveAStar } = useFirebase();
 
   const [article, setArticle] = useState([]);
@@ -27,31 +29,40 @@ function ViewArticle() {
   const toast = useToast();
   const [docId, setDocId] = useState("");
 
-  const fetchArticle = async () => {
-    try {
-      setLoading(true);
-      const data = await getSpecificArticle(articleIDFromURL);
-      setArticle(data.docs.map((el) => el.data()));
-      setDocId(data.docs.map((el) => el.id));
-    } catch (err) {
-      console.log(err);
-      toast({
-        title: "The article you are looking for was not found",
-        status: "error",
-        duration: 5000,
-      });
-    }
+ 
 
-    setLoading(false);
-  };
+  useEffect(() => {
 
-  useEffect(fetchArticle, []);
+    const fetchArticle = async () => {
+      try {
+        setLoading(true);
+        const data = await getSpecificArticle(articleIDFromURL);
+        setArticle(data.docs.map((el) => el.data()));
+        setDocId(data.docs.map((el) => el.id));
+      } catch (err) {
+        console.log(err);
+        toast({
+          title: "The article you are looking for was not found",
+          status: "error",
+          duration: 5000,
+        });
+      }
+  
+      setLoading(false);
+    };
 
+
+
+
+
+    fetchArticle();
+  }, [articleIDFromURL]);
+//Im gonna remove fetch article innit so rememeber to modify give a star accordingly innit my g
   const handleGiveAStar = async () => {
     try {
       setStarBtnLoading(true);
       await giveAStar(docId[0]);
-      fetchArticle();
+//     fetchArticle();
     } catch (err) {
       console.log(err);
     }
@@ -73,103 +84,89 @@ function ViewArticle() {
   };
 
   return (
-    <Box d="flex" justifyContent="center" alignItems="center">
-      <Box
-        w={["100vw", null, null, "70vw"]}
-        d="flex"
-        justifyContent="center"
-        flexDirection="column"
-      >
+    <div className="flex justify-center items-center">
+      <div
+      className="w-[100vw] sm:w-[70vw] flex justify-center flex-col">
         <Nav />
         {loading ? (
           <LoadingSmall />
         ) : (
           <>
             {article.map((el) => (
-              <Box px={["6", "10"]}>
-                <Text fontSize={["4xl", "5xl"]}>{el.content.title}</Text>
-                <Text fontSize={["xl", "2xl"]} opacity="0.8">
+              <div className="px-6 sm:px-10">
+                <h1 className="text-4xl sm:text-5xl">{el.content.title}</h1>
+                <h2 className="text-xl sm:text-2xl opacity-80">
                   {el.content.subtitle}
-                </Text>
+                </h2>
 
-                <Box d="flex" mt="6" flexDirection={["column", null, "row"]}>
-                  <Text color="blue.500" fontSize={["lg", "xl"]} mr="4">
+                <div className="flex mt-6 flex-col sm:flex-row">
+                  <h3 className="text-blue-700 text-lg sm:text-xl mr-4">
                     {el.authorUsername}
-                  </Text>
-                  <Text opacity="0.5" fontSize={["lg", "xl"]}>
+                  </h3>
+                  <span className="opacity-50 text-lg sm:text-xl">
                     {getDate(el.when).slice(4, 21)}
-                  </Text>
+                  </span>
                   <Spacer />
                   {el.visibility === "private" ? (
                     ""
                   ) : (
-                    <Box
-                      d="flex"
-                      flexDirection="row"
-                      alignItems="center"
-                      mt={[2, null, 0]}
-                    >
-                      <Text
-                        fontWeight="semibold"
-                        color="yellow.500"
-                        fontSize={["lg", "xl"]}
-                      >
+                    <div className="flex flex-row items-center mt-2 md:mt-0">
+                      <span
+                      className="font-semibold text-yellow-500 text-lg sm:text-lg">
                         {el.stars}
-                      </Text>
+                      </span>
                       <StarIcon
                         color="yellow.500"
                         fontSize={["lg", "xl"]}
                         mx="2"
                       />
-                    </Box>
+                    </div>
                   )}
-                </Box>
+                </div>
 
-                <Divider my="6" />
+                <div className="border-b-2 border-b-black my-6"/>
 
-                <Text
-                  fontSize={["lg", "xl"]}
-                  style={{ whiteSpace: "pre-wrap" }}
-                >
+                <span
+                className="text-lg sm:text-xl whitespace-pre-wrap">
                   {el.content.articleContent}
-                </Text>
+                </span>
 
-                <Divider my="6" />
+                <div className="border-b-2 border-b-black my-6"/>
 
                 {el.visibility === "private" ? (
                   ""
                 ) : (
                   <>
-                    <Box d="flex">
+                    <div className="flex">
                       {/* <Spacer d={["none", null, "block"]} /> */}
-                      <Button
+                      <button
+                      className="mr-2 bg-yellow-500"
                         rightIcon={<StarIcon />}
-                        colorScheme="yellow"
-                        variant="solid"
+                        
                         onClick={handleGiveAStar}
                         isLoading={starBtnLoading}
-                        mr="2"
+                        
                       >
                         Give a star
-                      </Button>
-                      <Button
+                      </button>
+                      <button className="bg-blue-700"
                         rightIcon={<LinkIcon />}
                         onClick={handleShareArticle}
-                        colorScheme="blue"
+                       
                       >
                         Share
-                      </Button>
-                    </Box>
+                      </button>
+                    </div>
 
                     <Comments />
                   </>
                 )}
-              </Box>
+              </div>
             ))}
           </>
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 

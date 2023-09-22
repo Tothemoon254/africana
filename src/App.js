@@ -12,7 +12,7 @@ import Login from "./components/authentication/Login";
 
 function App() {
   return (
-    <div className="App">
+    <div className="bg-[#FD8D14]">
      <div>
      
       <AuthContextProvider>
@@ -46,7 +46,7 @@ function App() {
             }
           />
           <Route
-            path='/myarticles'
+            path='/my-articles'
             element={
               <ProtectedRoute>
                 <MyArticles/>
@@ -54,7 +54,7 @@ function App() {
             }
           />
           <Route
-            path='/viewArticle'
+            path='/article/:articleID'
             element={
               <ProtectedRoute>
                 <ViewArticle/>
@@ -62,7 +62,7 @@ function App() {
             }
           />
           <Route
-            path='/editArticle'
+            path='/editArticle/:articleID'
             element={
               <ProtectedRoute>
                 <EditArticle/>
@@ -77,14 +77,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path='/editArticle'
-            element={
-              <ProtectedRoute>
-                <EditArticle/>
-              </ProtectedRoute>
-            }
-          />
+     
            
         </Routes>
         </FirebaseProvider>

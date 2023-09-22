@@ -77,25 +77,23 @@ function WriteArticle() {
   };
 
   return (
-    <Box d="flex" justifyContent="center" alignItems="center">
-      <Box
-        w={["100vw", null, null, "70vw"]}
-        d="flex"
-        justifyContent="center"
-        flexDirection="column"
+    <div className="flex justify-center items-center bg-[#FD8D14] h-screen">
+      <div
+      className="flex w-[100vw] sm:w-[70vw] justify-center flex-col"
       >
         <Nav />
 
-        <Box px={["6", "10"]}>
-          <Text fontSize={["2xl", "3xl"]} textAlign="center">
+        <div className="px-[24px] sm:px-[40px]" >
+          <h1 className="text-2xl sm:text-3xl text-center">
             Write your heart out!
-          </Text>
-          <Text fontSize={["sm", "md"]} textAlign="center" color="blue.500">
+          </h1>
+          <h2 className="text-sm sm:text-md text-black">
             writing as {user.displayName}
-          </Text>
+          </h2>
 
           <Textarea
             variant="unstyled"
+            color={"black"}
             placeholder="Title"
             fontSize={["4xl", "5xl"]}
             mt="10"
@@ -111,8 +109,8 @@ function WriteArticle() {
             rows={1}
             onChange={(e) => setSubtitle(e.target.value)}
           />
-
-          <Divider my={[6, 10]} />
+         <div className="border-b-2 border-b-black my-[24px} sm:my-[40px]"></div>
+         
 
           <Textarea
             variant="unstyled"
@@ -123,19 +121,15 @@ function WriteArticle() {
             rows={8}
           />
 
-          <Divider my={[6, 10]} />
+          <div className="border-b-2 border-b-black my-[24px} sm:my-[40px]"></div>
 
-          <Box d="flex" flexDirection="column">
-            <Box
-              d="flex"
-              
-              flexDirection={["column", null, "row"]}
-              justifyContent="flex-start"
-              alignItems={[null, null, "center"]}
+          <div className="flex flex-col">
+            <div
+            className="flex flex-col sm:flex-row justify-start sm:items-center"
             >
-              <Text fontSize={["xl", "2xl"]} mr="4" mb={[2, 2, 0]}>
+              <h3 className="text-xl sm:text-2xl mr-[16px] mb-[8px] md:mb-0">
                 Choose your article's visibility
-              </Text>
+              </h3>
 
               <RadioGroup
                 onChange={setVisibility}
@@ -151,48 +145,35 @@ function WriteArticle() {
                   </Radio>
                 </Stack>
               </RadioGroup>
-            </Box>
-            <Text fontSize={["sm", "md"]} opacity="0.4" mb="2">
+            </div>
+            <span className="text-sm sm:text-md opacity-[40%] mb-[8px] text-black" >
               {visibility === "private"
                 ? "Your article will not be shared with the community and will be visible only to you. You can change it later anytime."
                 : "Your article will be shared with the community and anyone could read it. You can change it later anytime."}
-            </Text>
-          </Box>
+            </span>
+          </div>
 
-          <Box
-            d="flex"
-            justifyContent="center"
-            alignItems="center"
-            flexDirection={["column-reverse", null, "row"]}
-            my="6"
-            mb={[6, 6, 10]}
+          <div
+          className="flex justify-center items-center flex-col-reverse md:flex-row my-[24px] mb-[24px] md:mb-[40px]"
           >
-            <Button
-              fontSize={["md", "lg"]}
-              py={8}
-              isFullWidth
-              // variant="ghost"
-              mr={["0", "0", "4"]}
-              mt={["4", "0"]}
-              as={Link}
+            <Link
+              class="bg-yellow-500 border-black border-2 shadow-custom text-md sm:text-lg py-[12px] px-[12px] mr-0 md:mr-[16px] mt-[16px] sm:mt-0"
+   
               to="/"
             >
               Discard
-            </Button>
-            <Button
-              fontSize={["md", "lg"]}
-              py={8}
-              isFullWidth
-              colorScheme="blue"
+            </Link>
+            <button class=" bg-yellow-500 border-black border-2 shadow-custom text-md sm:text-lg py-[12px] px-[12px] text-black"
+         
               onClick={handlePost}
               isLoading={loading}
             >
               Post {visibility === "private" ? "privately" : "publicly"}
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
