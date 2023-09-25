@@ -21,11 +21,11 @@ function Dashboard() {
           <div className="flex justify-between flex-col-reverse sm:flex-row">
             <div className="flex justify-center items-start flex-col">
               <h1 className="mt-6 text-4xl font-bold">
-                A place to read and tell of the millions of stories africa has to tell.
+                A place to read and tell of the millions of stories africa has to offer.
               </h1>
               <h1 className="text-lg mt-4">
                 It's easy and free to tell your story and
-                connect with millions of readers.
+                connect with thousands of readers.
               </h1>
 
               <Link to="/write"
@@ -34,7 +34,7 @@ function Dashboard() {
               </Link>
             </div>
             <div className="px-8 flex justify-center items-center">
-              <img src={AfricanaLogo} alt="logo" className="h-[600px]" />
+              <img src={AfricanaLogo} alt="logo" className="h-[750px]" />
             </div>
           </div>
           <div className="border-b-2 border-b-black my-8"></div>

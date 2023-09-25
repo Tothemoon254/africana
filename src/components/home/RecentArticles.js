@@ -64,7 +64,7 @@ console.log()
         <div  className="border-black border-2 h-[48px] w-[75%] p-3">
          <SearchIcon color='#000000'/>
           <input
-          className="bg-transparent text-black px-3"
+          className="bg-transparent text-black px-3 placeholder:text-black"
             type="text"
             color="#000000"
             placeholder="Search for articles"
@@ -77,64 +77,57 @@ console.log()
       {loading ? (
         <LoadingSmall />
       ) : (
-        <Box
-          mt="10"
-          mb={[0, 0, 4]}
-          d="flex"
-          justifyContent="center"
-          flexDirection="column"
+        <div className="mt-10 mb-0 md:mb-4 justify-center flex-col"
+ 
         >
           {filteredArticles.length === 0 ? (
-            <Text fontSize="xl" textAlign="center">
+            <h1 className="text-xl text-center">
               No articles found
-            </Text>
+            </h1>
           ) : null}
           {filteredArticles.map((el) => (
-            <Box
+            <Link
+              className="flex justify-center flex-col items-start"
               d="flex"
               justifyContent="center"
               flexDirection="column"
               alignItems="flex-start"
-              as={Link}
+              
               to={`/article/${el.articleID}`}
               // boxShadow="md"
               // p={[6, 8]}
               // mb={[4, 6]}
               // rounded="lg"
             >
-              <Text fontSize={["xl", "2xl"]}>{el.content.title}</Text>
-              <Text fontSize={["lg", "xl"]} opacity="0.8">
+              <h2 className="text-xl sm:text-2xl">{el.content.title}</h2>
+              <h3 className="opacity-80 text-lg sm:text-xl">
                 {el.content.subtitle}
-              </Text>
-              <Box d="flex" mt="4">
-                <Box
-                  d="flex"
-                  flexDirection="row"
-                  alignItems="center"
-                  mr="2"
+              </h3>
+              <div className="flex mt-4">
+                <div
+                className="flex flex-row items-center mr-2"
                   // mt={[2, null, 0]}
                 >
-                  <Text
-                    fontWeight="semibold"
-                    color="yellow.500"
-                    fontSize={["md", "lg"]}
+                  <h4
+                  className="font-semibold text-yellow-600 text-base sm:text-lg"
+              
                   >
                     {el.stars}
-                  </Text>
-                  <StarIcon color="yellow.500" fontSize={["md", "lg"]} ml="2" />
-                </Box>
-                <Text fontSize={["md", "lg"]} mr="2" color="blue.500">
+                  </h4>
+                  <StarIcon color={"yellow.500"} className= "text-base sm:text:lg ml-2 text-white" />
+                </div>
+                <span className="text-md sm:text-lg mr-2 text-blue-700">
                   {el.authorUsername}
-                </Text>
-                <Text fontSize={["md", "lg"]} opacity="0.6" fontWeight="light">
+                </span>
+                <span className="text-md sm:text-lg opacity-60 font-light" >
                   {getDate(el.when).slice(4, 21)}
-                </Text>
-              </Box>
+                </span>
+              </div>
 
-              <Divider my="6" />
-            </Box>
+              <div className="border-b-2 border-b-black my-8"></div>
+            </Link>
           ))}
-        </Box>
+        </div>
       )}
     </div>
   );

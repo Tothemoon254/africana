@@ -58,7 +58,7 @@ function Nav() {
       <div className="py-10 px-6 w-[100%] border-b-2 border-b-black">
         <div className="flex justify-center">
           <Link
-          className="text-3xl font-semibold"
+          className="text-3xl font-bold"
             to="/"
           >
             Africana
@@ -79,7 +79,7 @@ function Nav() {
             {user ? (
               <Menu placement="bottom-end">
                 {width > 768 ? (
-                  <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                  <MenuButton as={Button} bg={"#5bdfdf"} className="border-2 border-black shadow-custom" rightIcon={<ChevronDownIcon />}>
                     My profile
                   </MenuButton>
                 ) : (

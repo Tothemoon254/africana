@@ -62,7 +62,7 @@ function App() {
             }
           />
           <Route
-            path='/editArticle/:articleID'
+            path='/edit-Article/:articleID'
             element={
               <ProtectedRoute>
                 <EditArticle/>

@@ -84,7 +84,7 @@ function ViewArticle() {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center bg-[#FD8D14] ">
       <div
       className="w-[100vw] sm:w-[70vw] flex justify-center flex-col">
         <Nav />
@@ -93,9 +93,9 @@ function ViewArticle() {
         ) : (
           <>
             {article.map((el) => (
-              <div className="px-6 sm:px-10">
-                <h1 className="text-4xl sm:text-5xl">{el.content.title}</h1>
-                <h2 className="text-xl sm:text-2xl opacity-80">
+              <div className="px-6 sm:px-10 pt-9 h-screen">
+                <h1 className="text-4xl sm:text-5xl text-black">{el.content.title}</h1>
+                <h2 className=" mt-3 text-xl sm:text-2xl opacity-80 text-black">
                   {el.content.subtitle}
                 </h2>
 
@@ -103,7 +103,7 @@ function ViewArticle() {
                   <h3 className="text-blue-700 text-lg sm:text-xl mr-4">
                     {el.authorUsername}
                   </h3>
-                  <span className="opacity-50 text-lg sm:text-xl">
+                  <span className="opacity-50 text-lg sm:text-xl text-black">
                     {getDate(el.when).slice(4, 21)}
                   </span>
                   <Spacer />
@@ -133,6 +133,8 @@ function ViewArticle() {
 
                 <div className="border-b-2 border-b-black my-6"/>
 
+                
+
                 {el.visibility === "private" ? (
                   ""
                 ) : (
@@ -140,7 +142,7 @@ function ViewArticle() {
                     <div className="flex">
                       {/* <Spacer d={["none", null, "block"]} /> */}
                       <button
-                      className="mr-2 bg-yellow-500"
+                      className="mr-2 bg-yellow-500 py-3 px-3 border-2 border-black shadow-custom"
                         rightIcon={<StarIcon />}
                         
                         onClick={handleGiveAStar}
@@ -149,7 +151,7 @@ function ViewArticle() {
                       >
                         Give a star
                       </button>
-                      <button className="bg-blue-700"
+                      <button className="bg-blue-500 py-3 px-3 border-2 border-black shadow-custom"
                         rightIcon={<LinkIcon />}
                         onClick={handleShareArticle}
                        

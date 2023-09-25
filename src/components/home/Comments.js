@@ -20,7 +20,7 @@ const Comments = () => {
   const articleIDFromURL = window.location.href.split("/").pop();
   const { postComment, getComments, getSpecificArticle, deleteComment } =
     useFirebase();
-  const { currentUser } = UserAuth();
+  const { user } = UserAuth();
   const [loading, setLoading] = useState(false);
   const [commentBtnLoading, setCommentBtnLoading] = useState(false);
 
@@ -82,10 +82,10 @@ const Comments = () => {
       const data = {
         comment: comment,
         articleID: articleIDFromURL,
-        authorID: currentUser.uid,
+        authorID: user.uid,
         when: Date.now(),
-        authorEmail: currentUser.email,
-        autherUsername: `@${currentUser.email.split("@")[0]}`,
+        authorEmail: user.email,
+        autherUsername: `@${user.email.split("@")[0]}`,
       };
 
       setCommentBtnLoading(true);
@@ -136,38 +136,41 @@ const Comments = () => {
   return loading ? (
     <LoadingSmall />
   ) : (
-    <Box mt="10">
-      <Text fontSize={["2xl", "3xl"]}>Comments</Text>
-      <Box d="flex" mt="6" mb="6">
-        <Input
-          variant="unstyled"
+    <div className="mt-10 bg-[#FD8D14] ">
+      <h1 className="text-2xl sm:text-3xl">Comments</h1>
+      <div className="flex mt-6 mb-6 px-3">
+        <input
+        className="border-black border-2 text-black mx-3 bg-[#FD8D14] px-5 py-1 placeholder:text-black "
+          
           placeholder="Write your comment here"
-          fontSize={["xl", "2xl"]}
+          
           onChange={(e) => setComment(e.target.value)}
           value={comment}
-          mr="2"
+          g
         />
-        <IconButton
-          icon={<AddIcon />}
+      
+        <button
+        className=" bg-yellow-500 text-xl flex justify-center py-3 shadow-custom border-2 border-black px-3"
+          
           onClick={handlePostComment}
           isLoading={commentBtnLoading}
-        />
-      </Box>
+        ><AddIcon className="fill-black"/></button>
+      </div>
 
       {comments.map((el, i) => (
-        <Box mt="6">
-          <Box d="flex" mb="1" justifyContent="center" alignItems="center">
-            <Text color="blue.500" fontSize={["md", "lg"]} mr="2">
+        <div className="mt-6">
+          <div className="flex mb-1 justify-center items-center" d="flex">
+            <h2 className="text-blue-500 text-base sm:text-lg mr-2">
               {el.autherUsername}
-            </Text>
-            <Text opacity="0.5" fontSize={["md", "lg"]}>
+            </h2>
+            <h3 className="opacity-50 text-base sm:text-lg" opacity="0.5">
               {getDate(el.when).slice(4, 21)}
-            </Text>
+            </h3>
 
             <Spacer />
 
-            {el.authorID === currentUser.uid ||
-            (article[0] && article[0].authorID === currentUser.uid) ? (
+            {el.authorID === user.uid ||
+            (article[0] && article[0].authorID === user.uid) ? (
               <IconButton
                 icon={<DeleteIcon />}
                 variant="ghost"
@@ -179,14 +182,14 @@ const Comments = () => {
             ) : (
               ""
             )}
-          </Box>
-          <Text fontSize={["lg", "xl"]} mr="2">
+          </div>
+          <h4 className="text-lg sm:text-xl mr-2">
             {el.comment}
-          </Text>
-          <Divider my="6" />
-        </Box>
+          </h4>
+          <div className="border-b-2 border-b-black my-6"/>
+        </div>
       ))}
-    </Box>
+    </div>
   );
 };
 
