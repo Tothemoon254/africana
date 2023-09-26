@@ -53,18 +53,18 @@ console.log()
     <div className="mx-[24px] sm:mx-[64px]">
       <span className="text-2xl sm:text-3xl">Recently posted articles</span>
 
-      <div className="my-[16px] sm:my-[32px]">
-        <div  className="border-black border-2 h-[48px] w-[75%] p-3">
+      <div className="my-[16px] sm:my-[32px] border-black border-2 h-[48px] w-[75%] p-3 content-center ">
+        
          <SearchIcon color='#000000'/>
           <input
-          className="bg-transparent text-black px-3 placeholder:text-black placeholder:items-center"
+            className="bg-transparent  text-black px-3 placeholder:text-black"
             type="text"
             color="#000000"
             placeholder="Search for articles"
             onChange={(e) => handleSearch(e)}
            
-          />
-        </div>
+          ></input>
+        
       </div>
 
       {loading ? (
