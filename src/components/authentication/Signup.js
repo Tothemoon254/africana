@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Container,
-  Box,
-  Flex,
-  Button,
-  Text,
-  FormControl,
-  FormLabel,
-  Input,
-  SimpleGrid,
   useToast,
   Link as ChakraLink,
 } from "@chakra-ui/react";
@@ -19,8 +10,10 @@ import { UserAuth } from "../../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
-  const { createUser } = UserAuth();
+  const { createUser, updateUserProfile } = UserAuth();
   const [email, setEmail] = useState("");
+  const [name, setName] = useState('');
+  const [profilePic, setProfilePic] = useState('"https://example.com/jane-q-user/profile.jpg"');
   const [pwd, setPwd] = useState("");
   const [confirmPwd, setConfirmPwd] = useState("");
   const [error, setError] = useState("");
@@ -31,7 +24,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (pwd !== confirmPwd) {
+    if (!pwd) {
       setError("Passwords do not match.");
       toast({
         title: "Passwords do not match",
@@ -45,6 +38,7 @@ function Signup() {
       setError("");
       setLoading(true);
       await createUser(email, pwd);
+      await updateUserProfile(profilePic, name)
 
       toast({
         title: "Account successfully created",
@@ -68,83 +62,78 @@ function Signup() {
   };
 
   return (
-    <Box className="w-[100%] h-[100vh] flex justify-center content-center"
-      w="100%"
-      h="100vh"
-      d="flex"
-      justifyContent="center"
-      alignContent="center"
+    <div className="w-[100%] h-[100vh] flex justify-center content-center"
+ 
     >
-      <Box className="flex w-[100vw] h-[100vh] justify-center items-center text-center flex-col"
-        d="flex"
-        w={["100vw", null, null, "40vw"]}
-        h="100vh"
-        justifyContent="center"
-        alignItems="center"
-        textAlign="center"
-        flexDirection="column"
+      <div className="flex w-[100vw] h-[100vh] justify-center items-center text-center flex-col"
+ 
         // bgGradient={["linear(to-br, blue.500, blue.400)", "none"]}
       >
-        <Box w="90%" maxW="400px" boxShadow="lg" px={6} py={8} rounded="lg">
-          <Text fontSize="2xl" fontWeight="semibold" mb={4}>
+        <div className="w-[90%] max-w-[400px] shadow-custom px-6 py-8 rounded-lg border-2 border-black" >
+          <h1 className="text-2xl font-semibold mb-4">
             Sign Up
-          </Text>
+          </h1>
 
-          <FormControl id="email" mt={4} isRequired>
-            <FormLabel>Email address</FormLabel>
-            <Input
+          <form className=" flex flex-col place-items-start mt-4 my-3 " id="email" isRequired>
+            <label>Email address</label>
+            <input
+            className="border-2 w-[100%] rounded-md h-[40px] mt-2"
+              placeholder="Enter Email"
               type="email"
               variant="filled"
               value={email}
               autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
             />
-          </FormControl>
+          </form>
 
-          <FormControl id="password" mt={4} isRequired>
-            <FormLabel>Password</FormLabel>
-            <Input
+          <form className=" flex flex-col place-items-start mt-4 my-3 "id="username" mt={4} isRequired>
+            <label>Username</label>
+            <input
+             className="border-2 w-[100%] rounded-md h-[40px] mt-2"
+             placeholder="E.g John Doe"
+              type="username"
+              variant="filled"
+              value={name}
+              autoComplete="off"
+              onChange={(e) => setName(e.target.value)} 
+            />
+          </form>
+
+          <form  className= "flex flex-col place-items-start mt-4 my-3" id="password" mt={4} isRequired>
+            <label>Password</label>
+            <input
+              className= "border-2 w-[100%] rounded-md h-[40px] mt-2"
+              placeholder="Password"
               type="password"
               variant="filled"
               value={pwd}
               onChange={(e) => setPwd(e.target.value)}
             />
-          </FormControl>
+          </form>
 
-          <FormControl id="confirm-password" mt={4} isRequired>
-            <FormLabel>Confirm password</FormLabel>
-            <Input
-              type="password"
-              variant="filled"
-              value={confirmPwd}
-              onChange={(e) => setConfirmPwd(e.target.value)}
-            />
-          </FormControl>
 
           <button
-          className="bg-blue-700 w-[100%] mt-4 py-6 text-xl text-black"
+            className="bg-blue-600 w-[100%] mt-4 py-3 text-xl text-black border-2 border-black rounded-lg shadow-custom"
       
             onClick={handleSubmit}
             isLoading={loading}
           >
             Sign Up
           </button>
-        </Box>
-        <h1 className="mt-8 font-normal text-lg">
+        </div>
+        <span className="mt-8 font-normal text-lg">
           Already have an account?{" "}
           <Link to="/login">
             <ChakraLink color="blue.400">Login</ChakraLink>
           </Link>
-        </h1>
-      </Box>
+        </span>
+      </div>
 
-      <Box
-        w={["0vw", null, null, "60vw"]}
-        h="100%"
-        bgGradient="linear(to-br, blue.500, blue.400)"
-        boxShadow="2xl"
-      ></Box>
-    </Box>
+      <div
+       className="w-[0vw] md:w-[120vw] h-[100%] shadow-2xl bg-gradient-to-r from-cyan-500 to-blue-500 "                      
+      ></div>
+    </div>
   );
 }
 

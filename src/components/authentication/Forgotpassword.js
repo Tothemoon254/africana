@@ -14,12 +14,12 @@ import {
 } from "@chakra-ui/react";
 
 // Context
-import { userAuth } from "../../contexts/AuthContext";
+import { UserAuth } from "../../contexts/AuthContext";
 
 import { Link } from "react-router-dom";
 
 function ForgotPassword() {
-  const { resetPassword } = userAuth();
+  const { resetPassword } = UserAuth();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);

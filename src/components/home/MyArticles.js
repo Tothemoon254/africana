@@ -87,21 +87,22 @@ function MyArticles() {
   return (
     <div className="flex justify-center items-center bg-[#FD8D14]">
       <div
-      className="w-[100vw] md:w-[70vw] flex flex-col"
+         className="w-[100vw] md:w-[70vw] flex flex-col"
     
       >
         <Nav />
         {loading ? (
           <LoadingSmall />
         ) : (
-          <div className="mx-6 sm:mx-10">
-            <h1 className="text-2xl sm:text-3xl">Articles you have written</h1>
+          <div className="mx-6 sm:mx-10 h-screen">
+            <h1 className="text-2xl sm:text-3xl mt-3">Articles you have written</h1>
 
             <div className="flex justify-center items-center">
               <Spacer />
 
-              <Select
+              <Select 
                 // placeholder="Choose article visibility"
+                borderColor={"black"}
                 w={["100%", null, "320px"]}
                 mt="8"
                 onChange={(e) => handleSelectChange(e)}

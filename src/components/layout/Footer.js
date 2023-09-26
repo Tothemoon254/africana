@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, IconButton } from "@chakra-ui/react";
-import { FiGithub } from "react-icons/fi";
+import { FiGithub, FiInstagram } from "react-icons/fi";
 
 
 function Footer() {
@@ -8,11 +8,11 @@ function Footer() {
     <Box className="flex w-[100%] justify-center items-center mb-[40px]" >
       <IconButton
         onClick={() =>
-          window.open("https://github.com/arpit2205/medium-clone", "_blank")
+          window.open("https://www.instagram.com/africanaverse", "_blank")
         }
         variant="ghost"
         size="lg"
-        icon={<FiGithub />}
+        icon={<FiInstagram />}
       />
     </Box>
   );

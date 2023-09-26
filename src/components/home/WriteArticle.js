@@ -92,6 +92,7 @@ function WriteArticle() {
           </h2>
 
           <Textarea
+          className="placeholder:text-black"
             variant="unstyled"
             color={"black"}
             placeholder="Title"
@@ -102,6 +103,7 @@ function WriteArticle() {
             onChange={(e) => setTitle(e.target.value)}
           />
           <Textarea
+            className="placeholder:text-black"
             variant="unstyled"
             placeholder="Subtitle"
             fontSize={["xl", "2xl"]}
@@ -112,7 +114,8 @@ function WriteArticle() {
          <div className="border-b-2 border-b-black my-[24px} sm:my-[40px]"></div>
          
 
-          <Textarea
+          <Textarea 
+            className="placeholder:text-black"
             variant="unstyled"
             placeholder="Write your story here"
             fontSize={["md", "lg"]}
@@ -137,10 +140,10 @@ function WriteArticle() {
                 mb={[2, 2, 0]}
               >
                 <Stack direction="row">
-                  <Radio mr="2" isChecked={true} size="lg" value="public">
+                  <Radio mr="2" isChecked={true} size="lg" value="public" borderColor={"black"} >
                     Public
                   </Radio>
-                  <Radio size="lg" value="private">
+                  <Radio size="lg" value="private"  borderColor={"black"}>
                     Private
                   </Radio>
                 </Stack>

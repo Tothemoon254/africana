@@ -20,12 +20,11 @@ function Dashboard() {
         <div className="px-6" >
           <div className="flex justify-between flex-col-reverse sm:flex-row">
             <div className="flex justify-center items-start flex-col">
-              <h1 className="mt-6 text-4xl font-bold">
-                A place to read and tell of the millions of stories africa has to offer.
+              <h1 className="mt-6 text-5xl font-bold">
+                Repainting Africa on our own canvas.
               </h1>
-              <h1 className="text-lg mt-4">
-                It's easy and free to tell your story and
-                connect with thousands of readers.
+              <h1 className="text-xl mt-4">
+                Short stories from every corner the continent we know and love.
               </h1>
 
               <Link to="/write"

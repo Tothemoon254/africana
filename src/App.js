@@ -9,6 +9,7 @@ import ViewArticle from "./components/home/ViewArticle";
 import EditArticle from "./components/home/EditArticle";
 import Signup from './components/authentication/Signup'
 import Login from "./components/authentication/Login";
+import ForgotPassword from './components/authentication/Forgotpassword';
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
 
           <Route path="/signup" element={ <Signup/> } />
           <Route path="/login" element={ <Login/> } />
+          
+          
+
 
 
           <Route

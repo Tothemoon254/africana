@@ -15,7 +15,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { HamburgerIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { FiGithub } from "react-icons/fi";
+import { FiGithub, FiInstagram } from "react-icons/fi";
 import SideBar from "./SideBar";
 
 import { UserAuth } from "../../contexts/AuthContext";
@@ -66,11 +66,15 @@ function Nav() {
           <Spacer />
           <IconButton
             onClick={() =>
-              window.open("https://github.com/arpit2205/medium-clone", "_blank")
+              window.open("https://www.instagram.com/africanaverse", "_blank")
             }
             variant="ghost"
+            className="hover:bg-none"
+            size={"lg"}
+            _hover={{ bg: "none" }}
+          
             // size="lg"
-            icon={<FiGithub />}
+            icon={<FiInstagram />}
           />
           
           
@@ -79,7 +83,11 @@ function Nav() {
             {user ? (
               <Menu placement="bottom-end">
                 {width > 768 ? (
-                  <MenuButton as={Button} bg={"#5bdfdf"} className="border-2 border-black shadow-custom" rightIcon={<ChevronDownIcon />}>
+                  <MenuButton as={Button} bg={"#5bdfdf"} className="border-2 border-black shadow-custom"  _hover={{ bg: '#5bdfdf' }}  _active={{
+                    bg: '#5bdfdf',
+                    transform: 'scale(0.98)',
+                   
+                  }} rightIcon={<ChevronDownIcon />}>
                     My profile
                   </MenuButton>
                 ) : (
