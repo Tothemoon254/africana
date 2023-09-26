@@ -48,7 +48,7 @@ function SuggestedArticles() {
     });
     setFilteredArticles(filteredResults);
   };
-console.log()
+
   return (
     <div className="mx-[32px] sm:mx-[64px]">
       <span className="text-2xl sm:text-3xl">Recently posted articles</span>

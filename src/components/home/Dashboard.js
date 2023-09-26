@@ -20,7 +20,7 @@ function Dashboard() {
         <div className="px-6" >
           <div className="flex justify-between flex-col-reverse sm:flex-row">
             <div className="flex justify-center items-start flex-col">
-              <h1 className=" text-5xl font-bold">
+              <h1 className=" text-4xl sm:text-5xl font-bold">
                 Repainting Africa on our own canvas.
               </h1>
               <h1 className="text-xl mt-4">
