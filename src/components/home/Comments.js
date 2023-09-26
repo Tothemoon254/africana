@@ -136,7 +136,7 @@ const Comments = () => {
   return loading ? (
     <LoadingSmall />
   ) : (
-    <div className="mt-10 bg-[#FD8D14] ">
+    <div className="mt-10 bg-[#FD8D14]  ">
       <h1 className="text-2xl sm:text-3xl">Comments</h1>
       <div className="flex mt-6 mb-6 px-3">
         <input
@@ -158,8 +158,8 @@ const Comments = () => {
       </div>
 
       {comments.map((el, i) => (
-        <div className="mt-6">
-          <div className="flex mb-1 justify-center items-center" d="flex">
+        <div className="mt-6 ">
+          <div className="flex mb-1 justify-center items-center" >
             <h2 className="text-blue-500 text-base sm:text-lg mr-2">
               {el.autherUsername}
             </h2>

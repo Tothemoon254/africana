@@ -112,11 +112,11 @@ function ViewArticle() {
                   ) : (
                     <div className="flex flex-row items-center mt-2 md:mt-0">
                       <span
-                      className="font-semibold text-yellow-500 text-lg sm:text-lg">
+                      className="font-semibold text-yellow-400 text-lg sm:text-lg">
                         {el.stars}
                       </span>
                       <StarIcon
-                        color="yellow.500"
+                        color="yellow.400"
                         fontSize={["lg", "xl"]}
                         mx="2"
                       />

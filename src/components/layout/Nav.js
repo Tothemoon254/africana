@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import {
-  Box,
-  Flex,
-  Text,
   Spacer,
   Menu,
   MenuButton,
@@ -94,7 +91,13 @@ function Nav() {
                   <MenuButton
                     as={IconButton}
                     aria-label="Options"
+                    bg={"#5bdfdf"} 
                     icon={<HamburgerIcon />}
+                    className="border-2 border-black shadow-custom"  _hover={{ bg: '#5bdfdf' }}  _active={{
+                      bg: '#5bdfdf',
+                      transform: 'scale(0.98)',
+                     
+                    }}
                     // variant=""
                   />
                 )}
