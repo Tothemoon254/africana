@@ -24,7 +24,7 @@ function Dashboard() {
                 Repainting Africa on our own canvas.
               </h1>
               <h1 className="text-xl mt-4">
-                Short and magical stories from every corner the continent we know and love.
+                Short but magical stories from every corner the continent we know and love.
               </h1>
 
               <Link to="/write"
