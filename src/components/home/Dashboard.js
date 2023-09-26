@@ -32,7 +32,7 @@ function Dashboard() {
                 Start writing
               </Link>
             </div>
-            <div className="px-8 flex justify-center items-center border-2">
+            <div className=" flex justify-center items-center">
               <img src={AfricanaLogo} alt="logo" className="h-[750px] border-2 border-black" />
             </div>
           </div>
