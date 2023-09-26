@@ -33,7 +33,7 @@ function Dashboard() {
               </Link>
             </div>
             <div className=" flex justify-center items-center">
-              <img src={AfricanaLogo} alt="logo" className=" h-[450px] sm:h-[750px]" />
+              <img src={AfricanaLogo} alt="logo" className=" h-[300px] sm:h-[750px]" />
             </div>
           </div>
           <div className="border-b-2 border-b-black my-8"></div>
