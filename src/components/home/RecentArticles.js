@@ -114,7 +114,7 @@ console.log()
                   >
                     {el.stars}
                   </h4>
-                  <StarIcon color={"yellow.500"} className= "text-base sm:text:lg ml-2 text-white" />
+                  <StarIcon color={"yellow.500"} className = "text-base sm:text:lg ml-2 text-white" />
                 </div>
                 <span className="text-md sm:text-lg mr-2 text-blue-700">
                   {el.authorUsername}
