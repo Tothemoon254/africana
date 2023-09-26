@@ -61,7 +61,7 @@ function Login() {
           <form id="email" className=" flex flex-col place-items-start mt-4 my-3 "isRequired>
             <label>Email address</label>
             <input
-              className= "border-2 w-[100%] rounded-md h-[40px] mt-2"
+              className= "border-2 w-[100%] px-2 h-[40px] mt-2 border-black"
               type="email"
               variant="filled"
               value={email}
@@ -73,7 +73,7 @@ function Login() {
           <form id="password" className=" flex flex-col place-items-start mt-4 my-3 " isRequired>
             <label>Password</label>
             <input
-              className= "border-2 w-[100%] rounded-md h-[40px] mt-2"
+              className= "border-2 w-[100%] px-2 h-[40px] mt-2 border-black"
               type="password"
               variant="filled"
               value={pwd}
@@ -92,14 +92,14 @@ function Login() {
 
           <Text mt={6} fontWeight="normal" fontSize="lg">
             <Link to="/forgot-password">
-              <ChakraLink color="blue.400">Forgot password?</ChakraLink>
+              <ChakraLink color="blue.700">Forgot password?</ChakraLink>
             </Link>
           </Text>
         </div>
         <Text mt={8} fontWeight="normal" fontSize="lg">
           Don't have an account?{" "}
           <Link to="/signup">
-            <ChakraLink color="blue.400">Sign up</ChakraLink>
+            <ChakraLink color="blue.700">Sign up</ChakraLink>
           </Link>
         </Text>
       </div>

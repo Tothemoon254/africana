@@ -77,7 +77,7 @@ function Signup() {
           <form className=" flex flex-col place-items-start mt-4 my-3 " id="email" isRequired>
             <label>Email address</label>
             <input
-            className="border-2 w-[100%] rounded-md h-[40px] mt-2"
+            className="border-2 w-[100%] border-black px-2 h-[40px] mt-2"
               placeholder="Enter Email"
               type="email"
               variant="filled"
@@ -90,7 +90,7 @@ function Signup() {
           <form className=" flex flex-col place-items-start mt-4 my-3 "id="username" mt={4} isRequired>
             <label>Username</label>
             <input
-             className="border-2 w-[100%] rounded-md h-[40px] mt-2"
+             className="border-2 w-[100%] border-black px-2 h-[40px] mt-2"
              placeholder="E.g John Doe"
               type="username"
               variant="filled"
@@ -103,7 +103,7 @@ function Signup() {
           <form  className= "flex flex-col place-items-start mt-4 my-3" id="password" mt={4} isRequired>
             <label>Password</label>
             <input
-              className= "border-2 w-[100%] rounded-md h-[40px] mt-2"
+              className= "border-2 w-[100%] border-black px-2 h-[40px] mt-2"
               placeholder="Password"
               type="password"
               variant="filled"

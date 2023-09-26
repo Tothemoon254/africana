@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Text,
-  Divider,
-  Input,
-  InputGroup,
-  InputLeftElement,
-} from "@chakra-ui/react";
+
 import { StarIcon, SearchIcon } from "@chakra-ui/icons";
 import LoadingSmall from "../layout/LoadingSmall";
 
@@ -64,7 +57,7 @@ console.log()
         <div  className="border-black border-2 h-[48px] w-[75%] p-3">
          <SearchIcon color='#000000'/>
           <input
-          className="bg-transparent text-black px-3 placeholder:text-black"
+          className="bg-transparent text-black px-3 placeholder:text-black placeholder:items-center"
             type="text"
             color="#000000"
             placeholder="Search for articles"
