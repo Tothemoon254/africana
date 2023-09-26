@@ -22,7 +22,7 @@ import LoadingSmall from "../layout/LoadingSmall";
 
 function EditArticle() {
   const articleIDFromURL = window.location.href.split("/").pop();
-  const { currentUser } = UserAuth();
+  const { user } = UserAuth();
   const { editArticle, getSpecificArticle } = useFirebase();
   const [article, setArticle] = useState([]);
   const [title, setTitle] = useState("");
@@ -39,26 +39,31 @@ function EditArticle() {
     try {
       setLoading(true);
       const data = await getSpecificArticle(articleIDFromURL);
+      const articleData = data.docs[0].data();
+      const articleId = data.docs[0].id;
+  
       setArticle(data.docs.map((el) => el.data()));
-      setDocId(data.docs.map((el) => el.id)[0]);
-      setTitle(data.docs.map((el) => el.data())[0].content.title);
-      setSubtitle(data.docs.map((el) => el.data())[0].content.subtitle);
-      setArticleContent(
-        data.docs.map((el) => el.data())[0].content.articleContent
-      );
-      setVisibility(data.docs.map((el) => el.data())[0].visibility);
+      setDocId(articleId);
+      setTitle(articleData.content.title);
+      setSubtitle(articleData.content.subtitle);
+      setArticleContent(articleData.content.articleContent);
+      setVisibility(articleData.visibility);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       toast({
         title: "The article you are looking for was not found",
         status: "error",
         duration: 5000,
       });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
-
-  useEffect(fetchArticle, []);
+  
+  useEffect(() => {
+    fetchArticle();
+  }, [articleIDFromURL]);
+  
 
   const handleEdit = async () => {
     if (!title || !subtitle || !articleContent) {
@@ -103,12 +108,10 @@ function EditArticle() {
   };
 
   return (
-    <Box d="flex" justifyContent="center" alignItems="center">
-      <Box
-        w={["100vw", null, null, "70vw"]}
-        d="flex"
-        justifyContent="center"
-        flexDirection="column"
+    <div className="flex justify-center items-center">
+      <div
+      className="flex w-[100vw] md:w-[100vw] justify-center flex-col h-screen"
+       
       >
         <Nav />
 
@@ -126,7 +129,7 @@ function EditArticle() {
                   textAlign="center"
                   color="blue.500"
                 >
-                  writing as {`@${currentUser.email.split("@")[0]}`}
+                  writing as {`@${user.email.split("@")[0]}`}
                 </Text>
 
                 <Textarea
@@ -149,7 +152,7 @@ function EditArticle() {
                   onChange={(e) => setSubtitle(e.target.value)}
                 />
 
-                <Divider my={[6, 10]} />
+                <div className="border-b-2 border-b-black my-8"></div>
 
                 <Textarea
                   variant="unstyled"
@@ -163,7 +166,7 @@ function EditArticle() {
 
                 {/* ///////////////////// */}
 
-                <Divider my={[6, 10]} />
+                <div className="border-b-2 border-b-black my-8"></div>
 
                 <Box d="flex" flexDirection="column">
                   <Box
@@ -182,10 +185,10 @@ function EditArticle() {
                       mb={[2, 2, 0]}
                     >
                       <Stack direction="row">
-                        <Radio mr="2" isChecked={true} size="lg" value="public">
+                        <Radio mr="2" isChecked={true} size="lg" value="public" borderColor={'black'}>
                           Public
                         </Radio>
-                        <Radio size="lg" value="private">
+                        <Radio size="lg" value="private" borderColor={'black'} >
                           Private
                         </Radio>
                       </Stack>
@@ -208,35 +211,28 @@ function EditArticle() {
                   my="6"
                   mb={[6, 6, 10]}
                 >
-                  <Button
-                    fontSize={["md", "lg"]}
-                    py={8}
-                    isFullWidth
-                    // variant="ghost"
-                    mr={["0", "0", "4"]}
-                    mt={["4", "0"]}
-                    as={Link}
+                  <Link
+                    className=" bg-yellow-500 border-black border-2 shadow-custom text-base sm:text-lg py-[12px] px-[12px] mr-0 sm:mr-0 md:mr-4 mt-4 sm:mt-0"
+                   
                     to="/my-articles"
                   >
                     Discard
-                  </Button>
-                  <Button
-                    fontSize={["md", "lg"]}
-                    py={8}
-                    isFullWidth
-                    colorScheme="blue"
+                  </Link>
+                  <button
+                  className ="bg-yellow-500 border-black border-2 shadow-custom text-base sm:text-lg py-[12px] px-[12px] text-black"
+        
                     onClick={handleEdit}
                     isLoading={btnLoading}
                   >
                     Update
-                  </Button>
+                  </button>
                 </Box>
               </Box>
             ))}
           </>
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }
 

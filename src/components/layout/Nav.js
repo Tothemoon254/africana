@@ -55,7 +55,7 @@ function Nav() {
   return (
     <>
       {/* <SideBar /> */}
-      <div className="py-10 px-6 w-[100%] border-b-2 border-b-black">
+      <div className="py-7 sm:py-10 px-6 w-[100%] border-b-2 border-b-black">
         <div className="flex justify-center">
           <Link
           className="text-3xl font-bold"

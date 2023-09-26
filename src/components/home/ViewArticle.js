@@ -86,7 +86,7 @@ function ViewArticle() {
   return (
     <div className="flex justify-center items-center bg-[#FD8D14] ">
       <div
-      className="w-[100vw] sm:w-[70vw] flex justify-center flex-col">
+      className="w-[100vw] sm:w-[100vw] flex justify-center flex-col">
         <Nav />
         {loading ? (
           <LoadingSmall />

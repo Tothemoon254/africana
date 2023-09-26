@@ -84,7 +84,7 @@ function MyArticles() {
   return (
     <div className="flex justify-center items-center bg-[#FD8D14]">
       <div
-         className="w-[100vw] md:w-[70vw] flex flex-col"
+         className="w-[100vw] md:w-[100vw] flex flex-col"
     
       >
         <Nav />
