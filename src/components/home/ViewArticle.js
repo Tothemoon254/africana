@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
-  Box,
-  Text,
-  Divider,
+
   useToast,
   Spacer,
-  Button,
-  Spinner,
+
 } from "@chakra-ui/react";
 import { StarIcon, LinkIcon } from "@chakra-ui/icons";
 import Nav from "../layout/Nav";
-import LoadingSmall from "../layout/LoadingSmall";
+import Loading from "../layout/Loading";
 import { useParams } from "react-router-dom";
 
 import { useFirebase } from "../../contexts/FirebaseContext";
@@ -84,12 +81,12 @@ function ViewArticle() {
   };
 
   return (
-    <div className="flex justify-center items-center bg-[#FD8D14] ">
+    <div className="flex justify-center items-center bg-[#FD8D14] h-[100%]">
       <div
-      className="w-[100vw] sm:w-[100vw] flex justify-center flex-col">
+      className="w-[100vw]  flex justify-center flex-col">
         <Nav />
         {loading ? (
-          <LoadingSmall />
+          <Loading />
         ) : (
           <>
             {article.map((el) => (

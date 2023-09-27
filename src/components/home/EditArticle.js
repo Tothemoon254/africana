@@ -3,8 +3,6 @@ import {
   Box,
   Text,
   Textarea,
-  Divider,
-  Button,
   useToast,
   Radio,
   RadioGroup,
@@ -110,7 +108,7 @@ function EditArticle() {
   return (
     <div className="flex justify-center items-center">
       <div
-      className="flex w-[100vw] md:w-[100vw] justify-center flex-col h-screen"
+      className="flex w-[100vw] md:w-[100vw] justify-center flex-col h-[100%]"
        
       >
         <Nav />
@@ -120,17 +118,16 @@ function EditArticle() {
         ) : (
           <>
             {article.map((el) => (
-              <Box px={["6", "10"]}>
-                <Text fontSize={["2xl", "3xl"]} textAlign="center">
+              <div className="px-6 sm:px-10">
+                <h1 className="text-2xl sm:text-3xl text-center">
                   Edit your article
-                </Text>
-                <Text
-                  fontSize={["sm", "md"]}
-                  textAlign="center"
-                  color="blue.500"
+                </h1>
+                <h2
+                className="text-sm sm:text-md text-center text-blue-600"
+               
                 >
                   writing as {`@${user.email.split("@")[0]}`}
-                </Text>
+                </h2>
 
                 <Textarea
                   variant="unstyled"
@@ -168,16 +165,13 @@ function EditArticle() {
 
                 <div className="border-b-2 border-b-black my-8"></div>
 
-                <Box d="flex" flexDirection="column">
-                  <Box
-                    d="flex"
-                    flexDirection={["column", null, "row"]}
-                    justifyContent="flex-start"
-                    alignItems={[null, null, "center"]}
+                <div className="flex flex-col">
+                  <div
+                  className="flex flex-col md:flex-row justify-start md:items-center "
                   >
-                    <Text fontSize={["xl", "2xl"]} mr="4" mb={[2, 2, 0]}>
+                    <h3 className="text-xl sm:text-2xl mr-4 mb-2 sm:mb-2 md:mb-0">
                       Choose your article's visibility
-                    </Text>
+                    </h3>
 
                     <RadioGroup
                       onChange={setVisibility}
@@ -193,24 +187,18 @@ function EditArticle() {
                         </Radio>
                       </Stack>
                     </RadioGroup>
-                  </Box>
-                  <Text fontSize={["sm", "md"]} opacity="0.4" mb="2">
+                  </div>
+                  <span className="text-sm sm:text-md opacity-40 mb-2">
                     {visibility === "private"
                       ? "Your article will not be shared with the community. It will be visible only to you. You can change it later anytime."
                       : "Your article will be shared with the community and anyone could read it. You can change it later anytime."}
-                  </Text>
-                </Box>
+                  </span>
+                </div>
 
                 {/* //////////////////////// */}
 
-                <Box
-                  d="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  flexDirection={["column-reverse", null, "row"]}
-                  my="6"
-                  mb={[6, 6, 10]}
-                >
+                <div 
+                className="flex justify-center items-center flex-col-reverse md:flex-row my-6 mx-3 mb-6 sm:mb-6 md:mb-10">
                   <Link
                     className=" bg-yellow-500 border-black border-2 shadow-custom text-base sm:text-lg py-[12px] px-[12px] mr-0 sm:mr-0 md:mr-4 mt-4 sm:mt-0"
                    
@@ -226,8 +214,8 @@ function EditArticle() {
                   >
                     Update
                   </button>
-                </Box>
-              </Box>
+                </div>
+              </div>
             ))}
           </>
         )}

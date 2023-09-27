@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/icons";
 import Nav from "../layout/Nav";
 import LoadingSmall from "../layout/LoadingSmall";
+import Loading from "../layout/Loading"
 
 import { useFirebase } from "../../contexts/FirebaseContext";
 
@@ -89,7 +90,7 @@ function MyArticles() {
       >
         <Nav />
         {loading ? (
-          <LoadingSmall />
+          <Loading/>
         ) : (
           <div className="mx-6 sm:mx-10 h-screen">
             <h1 className="text-2xl sm:text-3xl mt-3">Articles you have written</h1>
@@ -97,18 +98,16 @@ function MyArticles() {
             <div className="flex justify-center items-center">
               <Spacer />
 
-              <Select 
+              <select 
+              className="border-2 bg-transparent rounded-md p-1 px-3 border-black  w-[100%] md:w-[320px] mt-8"
                 // placeholder="Choose article visibility"
-                borderColor={"black"}
-                w={["100%", null, "320px"]}
-                mt="8"
                 onChange={(e) => handleSelectChange(e)}
                 value={selectValue}
               >
                 <option value="all">All articles</option>
                 <option value="public">Public articles</option>
                 <option value="private">Private articles</option>
-              </Select>
+              </select>
             </div>
 
             <div
@@ -147,7 +146,7 @@ function MyArticles() {
                         </Badge>
                       )}
                       <h2 className="text-xl sm:text-2xl">{el.content.title}</h2>
-                      <h3 className="text-lg sm:text-xl opacity-[50%]">
+                      <h3 className="text-lg sm:text-xl opacity-[75%]">
                         {el.content.subtitle}
                       </h3>
                       <div className="flex mt-4">
@@ -166,7 +165,7 @@ function MyArticles() {
                                 {el.stars}
                               </span>
                               <StarIcon
-                                color="yellow.500"
+                                color="yellow.400"
                                 fontSize={["md", "lg"]}
                                 ml="2"
                               />

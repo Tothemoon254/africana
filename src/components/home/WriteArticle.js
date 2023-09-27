@@ -157,7 +157,7 @@ function WriteArticle() {
           </div>
 
           <div
-          className="flex justify-center items-center flex-col-reverse md:flex-row my-[24px] mb-[24px] md:mb-[40px]"
+          className="flex justify-center items-center flex-col-reverse md:ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp95flex-row my-[24px] mb-[24px] md:mb-[40px]"
           >
             <Link
               class="bg-yellow-500 border-black border-2 shadow-custom text-md sm:text-lg py-[12px] px-[12px] mr-0 md:mr-[16px] mt-[16px] sm:mt-0"

@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
-  Box,
-  Text,
-  Divider,
+
   IconButton,
   useToast,
   Spacer,
-  Button,
-  Input,
+
 } from "@chakra-ui/react";
 import { StarIcon, AddIcon, DeleteIcon } from "@chakra-ui/icons";
 import Nav from "../layout/Nav";
@@ -136,7 +133,7 @@ const Comments = () => {
   return loading ? (
     <LoadingSmall />
   ) : (
-    <div className="mt-10 bg-[#FD8D14]  ">
+    <div className="mt-10 bg-[#FD8D14]">
       <h1 className="text-2xl sm:text-3xl">Comments</h1>
       <div className="flex mt-6 mb-6 px-3">
         <input
@@ -163,11 +160,11 @@ const Comments = () => {
             <h2 className="text-blue-500 text-base sm:text-lg mr-2">
               {el.autherUsername}
             </h2>
-            <h3 className="opacity-50 text-base sm:text-lg" opacity="0.5">
+            <h3 className="opacity-50 text-base sm:text-lg">
               {getDate(el.when).slice(4, 21)}
             </h3>
 
-            <Spacer />
+            
 
             {el.authorID === user.uid ||
             (article[0] && article[0].authorID === user.uid) ? (
