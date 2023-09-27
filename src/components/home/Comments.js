@@ -133,7 +133,7 @@ const Comments = () => {
   return loading ? (
     <LoadingSmall />
   ) : (
-    <div className="mt-10 bg-[#FD8D14]">
+    <div className="mt-10 bg-[#FD8D14] w-[100%]">
       <h1 className="text-2xl sm:text-3xl">Comments</h1>
       <div className="flex mt-6 mb-6 px-3">
         <input
@@ -183,7 +183,7 @@ const Comments = () => {
           <h4 className="text-lg sm:text-xl mr-2">
             {el.comment}
           </h4>
-          <div className="border-b-2 border-b-black my-6"/>
+          <div className="border-b-2 w-[100%] border-b-black my-6"/>
         </div>
       ))}
     </div>
