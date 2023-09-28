@@ -25,6 +25,7 @@ function Nav() {
   const navigate = useNavigate();
   const location = useLocation();
   const isSignInPage = location.pathname === '/login';
+  const isSignUppage = location.pathname === '/signup';
   window.addEventListener("resize", () => {
     setWidth(window.screen.width);
   });
@@ -54,7 +55,7 @@ function Nav() {
   return (
     <>
       {/* <SideBar /> */}
-      {!isSignInPage && (
+      {!isSignInPage && !isSignUppage && (
       <div className="py-5 sm:py-10 px-6 w-[100%] border-b-2 border-b-black">
         <div className="flex justify-center">
           <Link

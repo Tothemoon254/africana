@@ -79,11 +79,11 @@ function WriteArticle() {
   return (
     <div className="flex justify-center items-center bg-[#FD8D14] min-h-screen ">
       <div
-      className="flex w-[100vw] sm:w-[100vw] justify-center flex-col"
+      className="flex w-[100vw] sm:w-[100vw] justify-center  flex-col"
       >
         
 
-        <div className="px-[24px] sm:px-[40px] mt-3" >
+        <div className="px-[24px] sm:px-[40px]" >
           <h1 className="text-2xl sm:text-3xl text-center text-black">
             Write your heart out!
           </h1>

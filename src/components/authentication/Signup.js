@@ -65,7 +65,7 @@ function Signup() {
     <div className="w-[100%] h-[100vh] flex justify-center content-center"
  
     >
-      <div className="flex w-[100vw] h-[100vh] justify-center items-center text-center flex-col"
+      <div className="flex w-[100vw] md:w-[40vw] h-[100vh] justify-center items-center text-center flex-col"
  
         // bgGradient={["linear(to-br, blue.500, blue.400)", "none"]}
       >
@@ -131,7 +131,7 @@ function Signup() {
       </div>
 
       <div
-       className="w-[0vw] md:w-[120vw] h-[100%] shadow-2xl bg-gradient-to-r from-cyan-500 to-blue-500 "                      
+       className="w-[0vw] md:w-[90vw] h-[100%] shadow-2xl bg-gradient-to-r from-cyan-500 to-blue-500 "                      
       ></div>
     </div>
   );

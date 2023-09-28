@@ -11,12 +11,13 @@ import Signup from './components/authentication/Signup'
 import Login from "./components/authentication/Login";
 import ForgotPassword from './components/authentication/Forgotpassword';
 import Nav from './components/layout/Nav';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
     <div className="bg-[#FD8D14]">
      <div>
-     
+      <Analytics/>
       <AuthContextProvider>
       <FirebaseProvider>
         <Nav/>

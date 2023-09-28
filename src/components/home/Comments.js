@@ -156,7 +156,7 @@ const Comments = () => {
 
       {comments.map((el, i) => (
         <div className="mt-6 ">
-          <div className="flex mb-1 justify-center items-center" >
+          <div className="flex mb-1 justify-center md:justify-start items-center" >
             <h2 className="text-blue-500 text-base sm:text-lg mr-2">
               {el.autherUsername}
             </h2>
