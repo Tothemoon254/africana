@@ -10,6 +10,7 @@ import EditArticle from "./components/home/EditArticle";
 import Signup from './components/authentication/Signup'
 import Login from "./components/authentication/Login";
 import ForgotPassword from './components/authentication/Forgotpassword';
+import Nav from './components/layout/Nav';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
      
       <AuthContextProvider>
       <FirebaseProvider>
+        <Nav/>
         
        
           

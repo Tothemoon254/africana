@@ -50,7 +50,7 @@ function Login() {
 
   return (
     <div
-      className="w-[100%] h-[100vh] flex justify-center content-center "
+      className="w-[100%] h-[100%] flex justify-center content-center "
     >
       <div
       className="flex w-[100vw] md:w-[40vw] h-[100vh] justify-center items-center text-center mx-3 flex-col">

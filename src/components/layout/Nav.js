@@ -16,13 +16,15 @@ import { FiGithub, FiInstagram } from "react-icons/fi";
 import SideBar from "./SideBar";
 
 import { UserAuth } from "../../contexts/AuthContext";
-import { useHistory, Link, useNavigate } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 
 function Nav() {
   const [width, setWidth] = useState(window.screen.width);
   const [error, setError] = useState("");
   const toast = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isSignInPage = location.pathname === '/login';
   window.addEventListener("resize", () => {
     setWidth(window.screen.width);
   });
@@ -52,6 +54,7 @@ function Nav() {
   return (
     <>
       {/* <SideBar /> */}
+      {!isSignInPage && (
       <div className="py-5 sm:py-10 px-6 w-[100%] border-b-2 border-b-black">
         <div className="flex justify-center">
           <Link
@@ -126,6 +129,7 @@ function Nav() {
           </div>
         </div>
       </div>
+      )}
     </>
   );
 }

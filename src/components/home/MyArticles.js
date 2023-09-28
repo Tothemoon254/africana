@@ -88,7 +88,7 @@ function MyArticles() {
          className="w-[100vw] md:w-[100vw] flex flex-col"
     
       >
-        <Nav />
+        
         {loading ? (
           <Loading/>
         ) : (

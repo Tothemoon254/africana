@@ -15,7 +15,7 @@ function Dashboard() {
   return (
     <div className="flex justify-center items-center bg-[#FD8D14]" >
       <div className="w-[100vw] flex justify-center flex-col">
-        <Nav />
+        
 
         <div className="px-6" >
           <div className="flex justify-between flex-col-reverse sm:flex-row">

@@ -106,19 +106,19 @@ function EditArticle() {
   };
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center min-h-screen ">
       <div
-      className="flex w-[100vw] md:w-[100vw] justify-center flex-col h-[100%]"
+      className="flex w-[100vw] md:w-[100vw] justify-center flex-col "
        
       >
-        <Nav />
+        
 
         {loading ? (
           <LoadingSmall />
         ) : (
           <>
             {article.map((el) => (
-              <div className="px-6 sm:px-10">
+              <div className="px-6 sm:px-10 ">
                 <h1 className="text-2xl sm:text-3xl text-center">
                   Edit your article
                 </h1>
@@ -198,9 +198,9 @@ function EditArticle() {
                 {/* //////////////////////// */}
 
                 <div 
-                className="flex justify-center items-center flex-col-reverse md:flex-row my-6 mx-3 mb-6 sm:mb-6 md:mb-10">
+                className="flex justify-center items-center flex-row my-[24px] mx-5 md:mb-10 ">
                   <Link
-                    className=" bg-yellow-500 border-black border-2 shadow-custom text-base sm:text-lg py-[12px] px-[12px] mr-0 sm:mr-0 md:mr-4 mt-4 sm:mt-0"
+                    className=" bg-yellow-500 border-black border-2 shadow-custom text-base sm:text-lg py-[12px] px-[12px] mr-3 sm:mr-0 md:mr-4 sm:mt-0"
                    
                     to="/my-articles"
                   >

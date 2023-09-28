@@ -125,7 +125,7 @@ function Signup() {
         <span className="mt-8 font-normal text-lg">
           Already have an account?{" "}
           <Link to="/login">
-            <ChakraLink color="blue.400">Login</ChakraLink>
+            <ChakraLink color="blue.700">Login</ChakraLink>
           </Link>
         </span>
       </div>

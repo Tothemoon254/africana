@@ -81,10 +81,10 @@ function ViewArticle() {
   };
 
   return (
-    <div className="flex justify-center items-center bg-[#FD8D14] h-[100%] py-5">
+    <div className="flex justify-center items-center bg-[#FD8D14]  py-5">
       <div
       className="w-[100vw]  flex justify-center flex-col">
-        <Nav />
+        
         {loading ? (
           <Loading />
         ) : (
