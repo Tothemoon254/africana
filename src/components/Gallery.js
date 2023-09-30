@@ -62,8 +62,8 @@ useEffect(() => {
 
     return(
 
-        <div className="flex flex-col bg-orange-300 h-[100%] w-[100vw] ">
-          Still Under construction
+        <div className="flex flex-col bg-[#FD8D14] h-[100%] w-[100vw] ">
+          <h1 className="text-black text-xl font-bold m-3">Still Under construction</h1>
         <input
         className="m-3"
           type="file"
