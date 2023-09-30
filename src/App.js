@@ -10,6 +10,7 @@ import EditArticle from "./components/home/EditArticle";
 import Signup from './components/authentication/Signup'
 import Login from "./components/authentication/Login";
 import ForgotPassword from './components/authentication/Forgotpassword';
+import Gallery from './components/Gallery';
 import Nav from './components/layout/Nav';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -39,6 +40,7 @@ function App() {
 
           <Route path="/signup" element={ <Signup/> } />
           <Route path="/login" element={ <Login/> } />
+          <Route path="/gallery" element={ <Gallery/> } />
           
           
 

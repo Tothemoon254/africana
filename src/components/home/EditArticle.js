@@ -130,6 +130,7 @@ function EditArticle() {
                 </h2>
 
                 <Textarea
+                className="placeholder:text-black"
                   variant="unstyled"
                   placeholder="Title"
                   defaultValue={el.content.title}
@@ -140,6 +141,7 @@ function EditArticle() {
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <Textarea
+                className="placeholder:text-black"
                   variant="unstyled"
                   placeholder="Subtitle"
                   defaultValue={el.content.subtitle}
@@ -152,6 +154,7 @@ function EditArticle() {
                 <div className="border-b-2 border-b-black my-8"></div>
 
                 <Textarea
+                className="placeholder:text-black"
                   variant="unstyled"
                   placeholder="Write your story here"
                   defaultValue={el.content.articleContent}

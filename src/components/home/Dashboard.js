@@ -13,7 +13,7 @@ function Dashboard() {
   
 
   return (
-    <div className="flex justify-center items-center bg-[#FD8D14]" >
+    <div className="flex justify-center items-center bg-[#FD8D14] w-screen" >
       <div className="w-[100vw] flex justify-center flex-col">
         
 
@@ -24,7 +24,7 @@ function Dashboard() {
                 Repainting Africa on our own canvas.
               </h1>
               <h1 className="text-xl mt-4">
-                Short but magical stories from every corner the continent we know and love.
+                Short but magical stories from every corner of the continent we know and love.
               </h1>
 
               <Link to="/write"
@@ -33,7 +33,7 @@ function Dashboard() {
               </Link>
             </div>
             <div className=" flex justify-center items-center">
-              <img src={AfricanaLogo} alt="logo" className=" h-[300px] sm:h-[750px]" />
+              <img src={AfricanaLogo} alt="logo" className=" h-[300px] sm:h-[750px] m-3" />
             </div>
           </div>
           <div className="border-b-2 border-b-black my-8"></div>
