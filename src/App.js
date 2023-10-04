@@ -13,7 +13,7 @@ import ForgotPassword from './components/authentication/Forgotpassword';
 import Gallery from './components/Gallery';
 import Nav from './components/layout/Nav';
 import { Analytics } from '@vercel/analytics/react';
-
+import AudioRecorder from './components/AudioRecorder';
 function App() {
   return (
     <div className="bg-[#FD8D14]">
@@ -40,9 +40,16 @@ function App() {
 
           <Route path="/signup" element={ <Signup/> } />
           <Route path="/login" element={ <Login/> } />
-          <Route path="/gallery" element={ <Gallery/> } />
           
           
+          <Route
+            path='/gallery'
+            element={
+              <ProtectedRoute>
+                <Gallery />
+              </ProtectedRoute>
+            }
+          />
 
 
 
@@ -65,9 +72,9 @@ function App() {
           <Route
             path='/article/:articleID'
             element={
-              <ProtectedRoute>
+              
                 <ViewArticle/>
-              </ProtectedRoute>
+              
             }
           />
           <Route

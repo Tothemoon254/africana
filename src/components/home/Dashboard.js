@@ -13,7 +13,7 @@ function Dashboard() {
   
 
   return (
-    <div className="flex justify-center items-center bg-[#FD8D14] " >
+    <div className="flex justify-center items-center bg-[#fd8c14f5] " >
       <div className="w-[100vw] flex justify-center flex-col">
         
 

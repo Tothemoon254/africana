@@ -16,6 +16,7 @@ import {
   QuerySnapshot
   
 } from "firebase/firestore";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 const FirebaseContext = createContext();
@@ -24,9 +25,11 @@ export const useFirebase = () => {
   return useContext(FirebaseContext);
 };
 
+
+
 export const FirebaseProvider = ({ children }) => {
   const { user } = UserAuth();
-
+  const navigate = useNavigate();
   const postArticle = async (data) => {
     const doc = collection(db, "articles");
     try {
@@ -119,6 +122,9 @@ export const FirebaseProvider = ({ children }) => {
   };
 
   const giveAStar = async (docID) => {
+
+    if (user) {
+
     try {
       const docRef = doc(db, "articles", docID);
   
@@ -144,6 +150,12 @@ export const FirebaseProvider = ({ children }) => {
       console.error("Error updating document: ", error);
       throw error; // You can choose to re-throw the error or handle it as needed
     }
+   }
+   else{
+
+    navigate("/login");
+
+   }
   };
   
 

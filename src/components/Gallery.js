@@ -5,6 +5,7 @@ import {
     getDownloadURL,
     listAll,
     list,
+    deleteObject
   } from "firebase/storage";
 import { storage } from "../firebase.config";
 import { v4 } from "uuid";
@@ -36,6 +37,38 @@ const uploadFile = () => {
   });
 };
 
+async function verifyImage(imageRef) {
+  // Example: Check if the image has a valid format, size, or content
+  // Replace this with your verification logic
+  return true; // Return true if the image is verified, false otherwise
+}
+
+
+async function moveImageToMainStorage(imageRef, temporaryPath) {
+  // Implement your verification process here
+  const isVerified = await verifyImage(imageRef);
+
+  if (isVerified) {
+    // If the image is verified, move it to the main storage
+    const mainImageRef = ref(storage, `main/${imageRef.name}`);
+    await storage.move(temporaryPath, mainImageRef);
+
+    // Retrieve the download URL for the main storage
+    const downloadURL = await getDownloadURL(mainImageRef);
+    return downloadURL;
+  } else {
+    // If the image is not verified, delete it from temporary storage
+    await deleteObject(imageRef);
+    return null; // Return null to indicate that the image is not stored
+  }
+}
+
+async function uploadToTemporaryStorage(file) {
+  const temporaryImageRef = ref(storage, `temporary/${file.name}`);
+  await uploadBytes(temporaryImageRef, file);
+  return temporaryImageRef;
+}
+
 useEffect(() => {
     listAll(imagesListRef)
       .then((response) => {
@@ -62,7 +95,7 @@ useEffect(() => {
 
     return(
 
-        <div className="flex flex-col bg-[#FD8D14] h-[100%] w-[100vw] ">
+        <div className="flex flex-col justify-center bg-[#FD8D14] h-[100%] w-[100vw] ">
           <h1 className="text-black text-xl font-bold m-3">Still Under construction</h1>
         <input
         className="m-3"
@@ -74,11 +107,11 @@ useEffect(() => {
         <div>
         <button className="bg-yellow-500 border-black border-2 shadow-custom text-base sm:text-lg py-[12px] px-[12px] m-3" onClick={uploadFile}> Upload Image</button>
        </div>
-        <div className="flex flex-row m-3">
+        <div className="grid grid-cols-3 m-3">
         {imageUrls.map((url) => {
             
             
-          return <img src={url} key={url} alt={url} className="h-[300px] m-3 " />;
+          return <img src={url} key={url} alt={url} className="h-[180px] sm:h-[450px]  m-3 " />;
         })}
         </div>
       </div>
