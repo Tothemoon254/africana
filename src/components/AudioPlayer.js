@@ -3,8 +3,9 @@ import { BsArrowLeftShort } from "react-icons/bs"
 import { BsArrowRightShort } from "react-icons/bs"
 import { FaPlay } from "react-icons/fa"
 import { FaPause } from "react-icons/fa"
+import { UserAuth } from '../contexts/AuthContext'
 
-const AudioPlayer = ( { src } ) => {
+const AudioPlayer = ( { src, caption } ) => {
   // state
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -13,7 +14,10 @@ const AudioPlayer = ( { src } ) => {
   // references
   const audioPlayer = useRef();   // reference our audio component
   const progressBar = useRef();   // reference our progress bar
-  const animationRef = useRef();  // reference the animation
+  const animationRef = useRef(); 
+ // reference the animation
+ const { user } = UserAuth()
+ const displayName = user?.displayName;
 
   useEffect(() => {
     const seconds = Math.floor(audioPlayer.current.duration);
@@ -66,28 +70,40 @@ const AudioPlayer = ( { src } ) => {
     progressBar.current.value = Number(progressBar.current.value + 30);
     changeRange();
   }
+  console.log(user)
 
   return (
-    <div className="items-center flex w-[500px] border-2 border-black rounded-[15px] shadow-custom ">
-      <audio ref={audioPlayer} src={src} preload="metadata"></audio>
+    <div>
+    <div className=" grid w-[95%] m-3 h-[90px] sm:w-[500px] sm:h-[120px] border-2 border-black rounded-[15px] shadow-custom justify-start  ">
+
+      <div className='flex items-center sm:pt-3 px-5'>
+      <audio ref={audioPlayer} src={src} type= 'audio/wav' preload="metadata"></audio>
       <button className="bg-none border-none flex items-center font-mono text-[16px] cursor-pointer hover:text-gray-700" onClick={backThirty}><BsArrowLeftShort /> 30</button>
-      <button onClick={togglePlayPause} className= "bg-transparent border-none rounded-[50%] w-[75px] h-[75px] text-[32px] text-[#ffd200] flex justify-center items-center">
-        {isPlaying ? <FaPause /> : <FaPlay className="relative left-[5px]" />}
+      <button onClick={togglePlayPause} className= "bg-transparent border-none rounded-[50%] w-[75px] h-[75px] pr-2 text-[30px] sm:text-[45px] text-[#ffd200] flex justify-center items-center" disabled={!src}>
+        {isPlaying ? <FaPause /> : <FaPlay className="  relative left-[5px]" />}
       </button>
       <button className="bg-none border-none flex items-center font-mono text-[16px] cursor-pointer hover:text-gray-700" onClick={forwardThirty}>30 <BsArrowRightShort /></button>
 
       {/* current time */}
       <div className='flex items-center'>
-      <div className="ml-[25px] font-mono text-[16px]">{calculateTime(currentTime)}</div>
+      <div className="ml-[12px] sm:ml-[25px] font-mono text-3 sm:text-[16px]">{calculateTime(currentTime)}</div>
 
       {/* progress bar */}
-      <div>
+    
         <input type="range" className="progressBar" defaultValue="0" ref={progressBar} onChange={changeRange} />
-      </div>
+    
 
       {/* duration */}
-      <div className="font-mono text-[16px] ml-[25px]">{(duration && !isNaN(duration)) && calculateTime(duration)}</div>
+      <div className="font-mono text-[16px] sm:ml-[25px]">{(duration && !isNaN(duration)) && calculateTime(duration)}</div>
       </div>
+      </div>
+
+      
+  <span className='font-bold text-base sm:text-xl mt-[-20px] text-gray-900 px-5'>
+    {caption}  {displayName}
+  </span>
+
+    </div>
     </div>
   )
 }

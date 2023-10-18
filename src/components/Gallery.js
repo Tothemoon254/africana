@@ -5,10 +5,16 @@ import {
     getDownloadURL,
     listAll,
     list,
-    deleteObject
+    deleteObject,
+    getMetadata
   } from "firebase/storage";
+
 import { storage } from "../firebase.config";
 import { v4 } from "uuid";
+import AddPhotoModal from "./AddPhotoModal";
+import { AddIcon } from "@chakra-ui/icons";
+import Loading from "./layout/Loading";
+
 
 
 
@@ -19,23 +25,17 @@ import { v4 } from "uuid";
 function Gallery(){
 
     const [imageUpload, setImageUpload] = useState(null);
+    const [caption, setCaption ] = useState();
     const [imageUrls, setImageUrls] = useState([]);
-  
+    const [showModal, setShowModal] = useState(false);
+    const [loading, setLoading ] = useState(false);
+    const [items, setItems ] = useState([]);
+
     const imagesListRef = ref(storage, "images/");
     
 
-const uploadFile = () => {
-  if (imageUpload == null) return;
-  const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-  uploadBytes(imageRef, imageUpload).then((snapshot) => {
-    getDownloadURL(snapshot.ref).then((url) => {
-     
-      if (!imageUrls.includes(url)) {
-        setImageUrls((prev) => [...prev, url]);
-      }
-    });
-  });
-};
+    
+    
 
 async function verifyImage(imageRef) {
   // Example: Check if the image has a valid format, size, or content
@@ -70,50 +70,82 @@ async function uploadToTemporaryStorage(file) {
 }
 
 useEffect(() => {
-    listAll(imagesListRef)
-      .then((response) => {
-        const uniqueUrls = new Set(); // Use a Set to store unique URLs
-  
-        response.items.forEach((item) => {
-          getDownloadURL(item)
-            .then((url) => {
-              uniqueUrls.add(url); // Add each URL to the Set
-            })
-            .finally(() => {
-              // Check if all URLs have been processed before updating the state
-              if (uniqueUrls.size === response.items.length) {
-                setImageUrls([...uniqueUrls]); // Convert the Set back to an array and update the state
-              }
-            });
-        });
-      });
-  }, []);
+  const fetchStorageData = async () => {
+    
+    const itemsArray = [];
+
+    try {
+      setLoading(true);
+      const { items } = await listAll(imagesListRef);
+      
+
+      for (const item of items) {
+        const url = await getDownloadURL(item);
+        const metadata = await getMetadata(item);
+
+        itemsArray.push({ url, metadata });
+      }
+
+      setItems(itemsArray);
+      
+    } catch (error) {
+      console.error('Error fetching storage data:', error);
+    }
+    finally {
+      setLoading(false); // Move setLoading(false) here to ensure it always gets called
+    }
+  };
+
+  fetchStorageData();
+}, []);
+
   
 
+  
+  function openModal() {
+    setShowModal(true);
+}
+  
+  const ImageWithCaption = ({ imageUrl, caption }) => {
+    return (
+      <div className="">
+        <img src={imageUrl} alt={caption} className="h-[180px] sm:h-[450px] m-3" />
+        <div className="caption">{caption}</div>
+      </div>
+    );
+  };
 
  
 
     return(
 
-        <div className="flex flex-col justify-center bg-[#FD8D14] h-[100%] w-[100vw] ">
-          <h1 className="text-black text-xl font-bold m-3">Still Under construction</h1>
-        <input
-        className="m-3"
-          type="file"
-          onChange={(event) => {
-            setImageUpload(event.target.files[0]);
-          }}
-        />
-        <div>
-        <button className="bg-yellow-500 border-black border-2 shadow-custom text-base sm:text-lg py-[12px] px-[12px] m-3" onClick={uploadFile}> Upload Image</button>
-       </div>
-        <div className="grid grid-cols-3 m-3">
-        {imageUrls.map((url) => {
+        <div className="flex flex-col  justify-center  w-[100vw] ">
+           <div className="flex justify-center w-[100%] bg-[#FD8D14] z-10">
+          <h1 className=" text-3xl font-bold fixed top-[120px]  mx-5">Gallery(Still Under Construction)</h1>
+          
+           </div>
+               
+ 
+         <div className="fixed right-0 m-5 bottom-0">
+              <button
+                onClick={openModal}
+                  className={"flex  bg-[#5bdfdf] p-[20px] rounded-[20px] shadow-custom  ml-[10px] text-black hover:text-lg transition-all border-2 border-black "}
+                        >
+                           <AddIcon className="fill-black"/>
+                          
+                        </button>
+                    </div>
+                    {loading ? (
+          <Loading />
+        ) : (
+        <div className="grid grid-cols-1 place-items-center sm:grid-cols-3 justify-center mt-[200px] w-[100%] sm:mt-[210px] bg-[#FD8D14] z-0 h-[100%] m-3">
+        {items.map((data) => {
             
             
-          return <img src={url} key={url} alt={url} className="h-[180px] sm:h-[450px]  m-3 " />;
+          return <img src={data.url} className="h-[300px] sm:h-[500px]" />;
         })}
-        </div>
+        </div>)}
+        {showModal && <AddPhotoModal onClose={() => setShowModal(false)} />}
       </div>
   
     )

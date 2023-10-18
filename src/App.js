@@ -14,6 +14,7 @@ import Gallery from './components/Gallery';
 import Nav from './components/layout/Nav';
 import { Analytics } from '@vercel/analytics/react';
 import AudioRecorder from './components/AudioRecorder';
+import Account from './components/authentication/Account';
 function App() {
   return (
     <div className="bg-[#FD8D14]">
@@ -40,7 +41,7 @@ function App() {
 
           <Route path="/signup" element={ <Signup/> } />
           <Route path="/login" element={ <Login/> } />
-          
+          <Route path="/record" element={ <AudioRecorder/> } />
           
           <Route
             path='/gallery'
@@ -93,6 +94,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+   
      
            
         </Routes>

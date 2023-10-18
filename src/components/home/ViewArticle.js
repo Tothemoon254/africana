@@ -6,7 +6,6 @@ import {
 
 } from "@chakra-ui/react";
 import { StarIcon, LinkIcon } from "@chakra-ui/icons";
-import Nav from "../layout/Nav";
 import Loading from "../layout/Loading";
 import { useParams } from "react-router-dom";
 

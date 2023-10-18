@@ -57,7 +57,7 @@ function SuggestedArticles() {
         
          <SearchIcon color='#000000'/>
           <input
-            className="bg-transparent text-black mx-3 placeholder:text-black self-center"
+            className="bg-transparent text-black mx-3 placeholder:text-black self-center w-[100vh]"
             type="text"
             color="#000000"
             placeholder="Search for articles"

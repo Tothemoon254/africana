@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Spacer,
   Menu,
@@ -12,11 +12,12 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { HamburgerIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { FiGithub, FiInstagram } from "react-icons/fi";
-import SideBar from "./SideBar";
-
+import { FiInstagram } from "react-icons/fi";
+import { FcGallery } from 'react-icons/fc'
+import { FaBars } from 'react-icons/fa'
 import { UserAuth } from "../../contexts/AuthContext";
 import { useLocation, Link, useNavigate } from "react-router-dom";
+import useClickAway from '../../useClickAway';
 
 function Nav() {
   const [width, setWidth] = useState(window.screen.width);
@@ -26,11 +27,76 @@ function Nav() {
   const location = useLocation();
   const isSignInPage = location.pathname === '/login';
   const isSignUppage = location.pathname === '/signup';
+
+  const scrollThreshold = 300; // Adjust this value to your preference
+  const [navbarRetracted, setNavbarRetracted] = useState(false);
+
+  // Scroll event listener function
+  const handleScroll = () => {
+    if (window.scrollY > scrollThreshold) {
+      setNavbarRetracted(true);
+    } else {
+      setNavbarRetracted(false);
+    }
+  };
+
+  // Attach the scroll event listener on component mount
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    
+    // Remove the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   window.addEventListener("resize", () => {
     setWidth(window.screen.width);
   });
 
   const { user, logout } = UserAuth();
+  const [sidebar, setSidebar] = useState(false);
+  const { ref, isVisible, setIsVisible } = useClickAway(false);
+
+  const showSidebar = () => setIsVisible(!isVisible);
+
+  
+
+  
+
+  
+
+  const SideNavbar = () => {
+    
+  
+    return(
+  
+        <div >
+  
+            <Link to='/' onClick={showSidebar} className=" flex items-center border-b-2 border-b-black">
+                  <span className="font-bold m-5"> Home </span>
+            </Link>
+  
+            <Link to='/record' onClick={showSidebar} className=" flex items-center  border-b-2 border-b-black">
+                <span className="font-bold m-5"> Audio Poetry </span></Link>
+
+            <Link to='/gallery' onClick={showSidebar} className=" flex items-center  border-b-2 border-b-black">
+                <SideBarIcon icon={<FcGallery size="28" />} text ='Gallery'/> <span className="font-bold m-5"> Gallery </span>
+            </Link>
+  
+        </div>
+    );
+  
+  
+  }
+  const SideBarIcon = ({ icon, text = 'tooltip 💡' }) => (
+    <div className="sidebar-icon group" >
+      {icon}
+      <span class="sidebar-tooltip group-hover:scale-100">
+        {text}
+      </span>
+    </div>
+  );
 
   const handleLogout = async () => {
     setError("");
@@ -56,8 +122,9 @@ function Nav() {
     <>
       {/* <SideBar /> */}
       {!isSignInPage && !isSignUppage && (
-      <div className="py-5 sm:py-10 px-6 w-[100%] border-b-2 border-b-black">
-        <div className="flex justify-center">
+      <div className={navbarRetracted ? 'top-Navbar retracted' : 'top-Navbar'}>
+        <div className="flex justify-center items-center">
+        <FaBars size="28" className="mx-3 sm:mx-5" onClick={showSidebar} />
           <Link
           className="text-3xl font-bold"
             to="/"
@@ -65,6 +132,14 @@ function Nav() {
             Africana
           </Link>
           <Spacer />
+          <div ref={ref} >
+      <div className={ !navbarRetracted && isVisible ? 'nav-menu active' : 'nav-menu'}>
+      
+      <SideNavbar />
+     
+      </div> 
+    
+      </div>
           <IconButton
             onClick={() =>
               window.open("https://www.instagram.com/africanaverse", "_blank")

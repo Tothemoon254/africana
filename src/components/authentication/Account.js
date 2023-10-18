@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserAuth } from '../contexts/AuthContext';
+import { UserAuth } from '../../contexts/AuthContext';
 
 
 
@@ -43,11 +43,11 @@ const Account = () => {
 
   
   return (
-    <div className='max-w-[600px] mx-auto mt-16 p-4 dark:bg-black dark:text-white dark:border-white '>
+    <div className='max-w-[600px] mx-auto mt-16 p-4 bg-[#FD8D14 '>
       
       
       <h1 className='text-2xl font-bold py-4'>Account</h1>
-      <div className=' flex rounded-[100%] border-2 shadow-lg h-[75px] w-[75px] border-black place-items-center text-lg font-bold justify-center  dark:border-white dark:border-[1px]  '>{initials(user.displayName)}</div>
+      <div className=' flex rounded-[100%] border-2 shadow-lg h-[75px] w-[75px] border-black place-items-center text-lg font-bold justify-center  bg-[#FD8D14  '>{initials(user.displayName)}</div>
       
       <p>Username: {user && user.displayName}</p>
       <form onSubmit={handleUpdateProfile}>

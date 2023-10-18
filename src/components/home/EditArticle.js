@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  Box,
-  Text,
+
   Textarea,
   useToast,
   Radio,
@@ -9,13 +8,11 @@ import {
   Stack,
 } from "@chakra-ui/react";
 
-import Nav from "../layout/Nav";
 import { Link, useNavigate } from "react-router-dom";
 
 import { UserAuth } from "../../contexts/AuthContext";
 import { useFirebase } from "../../contexts/FirebaseContext";
 
-import { v4 as uuidv4 } from "uuid";
 import LoadingSmall from "../layout/LoadingSmall";
 
 function EditArticle() {
