@@ -57,7 +57,7 @@ const uploadFileWithMetadata = (file, caption) => {
   .then((snapshot) => {
 
     toast({
-      title: "Voicenote posted",
+      title: "Uploaded!",
       status: "success",
       duration: 5000,
     });
@@ -131,8 +131,8 @@ function openModal() {
 
     return(
 
-        <div className=" fixed top-0 right-0 bottom-0 left-0 bg-none m-3 flex items-center justify-center">
-            <div className="min-w-[300px] bg-[#FD8D14] max-w-auto py-7 pt-9  border-2 border-black rounded-[20px] justify-center relative">
+        <div className=" fixed top-0 right-0 bottom-0 left-0 bg-none m-3 flex items-center justify-center z-30">
+            <div className="min-w-[300px] bg-[#FD8D14] max-w-auto py-3 pt-9  border-2 border-black rounded-[20px] justify-center relative ">
              <button onClick={onClose} className="absolute m-3 right-0 top-0 bg-none ">
                     <CloseIcon className="fill-black"/>
                 </button>

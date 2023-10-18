@@ -100,7 +100,7 @@ const AudioPlayer = ( { src, caption } ) => {
 
       
   <span className='font-bold text-base sm:text-xl mt-[-20px] text-gray-900 px-5'>
-    {caption}  {displayName}
+    {caption}  {user?.displayName}
   </span>
 
     </div>
