@@ -79,7 +79,7 @@ const AudioPlayer = ( { src, caption } ) => {
       <div className='flex items-center sm:pt-3 px-5'>
       <audio ref={audioPlayer} src={src} type= 'audio/wav' preload="metadata"></audio>
       <button className="bg-none border-none flex items-center font-mono text-[16px] cursor-pointer hover:text-gray-700" onClick={backThirty}><BsArrowLeftShort /> 30</button>
-      <button onClick={togglePlayPause} className= "bg-transparent border-none rounded-[50%] w-[75px] h-[75px] pr-2 text-[30px] sm:text-[45px] text-[#ffd200] flex justify-center items-center" disabled={!src}>
+      <button onClick={togglePlayPause} className= "bg-transparent border-none  w-[75px] h-[75px] pr-2 text-[30px] sm:text-[45px] text-[#ffd200] flex justify-center items-center" disabled={!src}>
         {isPlaying ? <FaPause /> : <FaPlay className="  relative left-[5px]" />}
       </button>
       <button className="bg-none border-none flex items-center font-mono text-[16px] cursor-pointer hover:text-gray-700" onClick={forwardThirty}>30 <BsArrowRightShort /></button>

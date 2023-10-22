@@ -82,14 +82,14 @@ function ViewArticle() {
   return (
     <div className="flex justify-center items-center bg-[#FD8D14]  py-5">
       <div
-      className="w-[100vw] flex justify-center flex-col">
+      className="w-[100vw] flex justify-center  flex-col">
         
         {loading ? (
           <Loading />
         ) : (
           <>
             {article.map((el) => (
-              <div className="px-6 sm:px-10 pt-9 h-[100%]">
+              <div className="px-6 sm:px-10 pt-[90px] sm:pt-[120px]  h-[100%] ">
                 <h1 className="text-4xl sm:text-5xl text-black">{el.content.title}</h1>
                 <h2 className=" mt-3 text-xl sm:text-2xl opacity-80 text-black">
                   {el.content.subtitle}
@@ -99,14 +99,23 @@ function ViewArticle() {
                   <h3 className="text-blue-700 text-lg sm:text-xl mr-4">
                     {el.authorUsername}
                   </h3>
-                  <span className="opacity-50 text-lg sm:text-xl text-black">
-                    {getDate(el.when).slice(4, 21)}
-                  </span>
+              
                   <Spacer />
-                  {el.visibility === "private" ? (
+                 
+                </div>
+
+                <div className=" my-6"/>
+
+                <span
+                className="text-lg sm:text-xl whitespace-pre-wrap text-black">
+                  {el.content.articleContent}
+                </span>
+
+               
+                {el.visibility === "private" ? (
                     ""
                   ) : (
-                    <div className="flex flex-row items-center mt-2 md:mt-0">
+                    <div className="flex flex-row items-center mt-2 md:mt-0 py-5">
                       <span
                       className="font-semibold text-yellow-400 text-lg sm:text-lg">
                         {el.stars}
@@ -118,16 +127,14 @@ function ViewArticle() {
                       />
                     </div>
                   )}
-                </div>
 
-                <div className="border-b-2 border-b-black my-6"/>
 
-                <span
-                className="text-lg sm:text-xl whitespace-pre-wrap">
-                  {el.content.articleContent}
-                </span>
 
-                <div className="border-b-2 border-b-black my-6"/>
+                <span className="opacity-50 text-lg sm:text-xl text-black">
+                    {getDate(el.when).slice(4, 21)}
+                  </span>
+
+                <div className=" my-6"/>
 
                 
 

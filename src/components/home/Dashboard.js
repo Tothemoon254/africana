@@ -5,7 +5,6 @@ import AfricanaLogo from '../../assets/AfricanaLogo.svg'
 
 import { Link } from "react-router-dom";
 
-import Nav from '../layout/Nav';
 import RecentArticles from "./RecentArticles";
 import Footer from "../layout/Footer";
 
