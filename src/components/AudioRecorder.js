@@ -153,9 +153,9 @@ const audioUrl = URL.createObjectURL(audioBlob);
   return (
     <div className=" flex  bg-[#FD8D14] place-items-center h-screen top-[120px] pt-[50px] flex-col  ">
       
-      <div className="flex fixed backdrop-blur-md top-[106px] bg-[#FD8D14] justify-center w-[600px]    z-10">
+      <div className="flex fixed backdrop-blur-md sm:top-[106px] bg-[#FD8D14] justify-center w-[600px] z-10">
 
-     <h1 className=" text-3xl font-bold mt-9">Audio Poetry</h1>
+     <h1 className=" text-3xl font-bold pt-[100px] sm:pt-9">Audio Poetry</h1>
      
      
      </div>

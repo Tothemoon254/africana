@@ -124,9 +124,9 @@ function Nav() {
       {!isSignInPage && !isSignUppage && (
       <div className={navbarRetracted ? 'top-Navbar retracted' : 'top-Navbar'}>
         <div className="flex justify-center items-center">
-        <FaBars size="28" className="mx-3 sm:mx-5" onClick={showSidebar} />
+        <FaBars size="28" className=" " onClick={showSidebar} />
           <Link
-          className="text-3xl font-bold"
+          className="text-3xl font-bold mx-4 sm:mx-5"
             to="/"
           >
             Africana
