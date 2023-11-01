@@ -168,7 +168,7 @@ const audioUrl = URL.createObjectURL(audioBlob);
       <div className=" flex bg-[#FD8D14] pt-[150px] place-items-center w-screen flex-col m-3    ">
         {items.map((data) => {
 
-          return <AudioPlayer src={data.url} caption={data.metadata.customMetadata.caption}/>;
+          return <AudioPlayer src={data.url} path={data.metadata.fullPath} caption={data.metadata.customMetadata.caption}/>;
 
         })}
         </div>

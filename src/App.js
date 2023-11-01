@@ -15,7 +15,11 @@ import Nav from './components/layout/Nav';
 import { Analytics } from '@vercel/analytics/react';
 import AudioRecorder from './components/AudioRecorder';
 import Account from './components/authentication/Account';
+import VoiceNotePage from './components/VoiceNotePage';
+
+
 function App() {
+
   return (
     <div className="bg-[#FD8D14]">
      <div>
@@ -92,6 +96,14 @@ function App() {
               <ProtectedRoute>
                 <EditArticle/>
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/audio/:VoiceNoteID'
+            element={
+              
+                <VoiceNotePage/>
+              
             }
           />
    

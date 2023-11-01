@@ -32,6 +32,29 @@ function Gallery(){
     const [items, setItems ] = useState([]);
 
     const imagesListRef = ref(storage, "images/");
+
+    const scrollThreshold = 300; // Adjust this value to your preference
+    const [titleRetracted, setTitleRetracted] = useState(false);
+  
+    // Scroll event listener function
+    const handleScroll = () => {
+      if (window.scrollY > scrollThreshold) {
+        setTitleRetracted(true);
+      } else {
+        setTitleRetracted(false);
+      }
+    };
+
+
+      // Attach the scroll event listener on component mount
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    
+    // Remove the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
     
 
     
@@ -119,11 +142,13 @@ useEffect(() => {
 
     return(
 
-        <div className="flex flex-col  justify-center  w-[100vw] ">
-           <div className="flex justify-center w-[100%] bg-[#FD8D14] z-10">
-          <h1 className=" text-3xl font-bold fixed top-[120px]  mx-5">Gallery(Still Under Construction)</h1>
-          
-           </div>
+        <div className="flex w-[100%]  justify-center   ">
+          <div className="flex fixed backdrop-blur-md sm:top-[106px] w-[100%] bg-[#FD8D14] justify-center z-10">
+
+         <h1 className=" text-3xl font-bold pt-[100px] sm:pt-9 py-3">Gallery</h1>
+
+
+        </div>
                
  
          <div className="fixed right-0 m-5 bottom-0">
@@ -138,15 +163,18 @@ useEffect(() => {
                     {loading ? (
           <Loading />
         ) : (
-        <div className="grid grid-cols-1 place-items-center sm:grid-cols-3 justify-center mt-[200px] w-[100%] sm:mt-[210px] bg-[#FD8D14] z-0 h-[100%] m-3">
+          <div className="flex flex-col justify-center w-[100%]">
+        <div className="grid grid-cols-1 gap-3 place-items-center sm:grid-cols-3 justify-center overflow-auto mt-[200px] sm:mt-[210px] bg-[#FD8D14] ">
         {items.map((data) => {
             
             
-          return <img src={data.url} className="h-[300px] sm:h-[500px]" />;
+         return <img src={data.url} className="h-[300px] sm:h-[500px] m-1" />;
         })}
+        </div> 
         </div>)}
         {showModal && <AddPhotoModal onClose={() => setShowModal(false)} />}
       </div>
+     
   
     )
 }

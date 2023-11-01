@@ -71,7 +71,20 @@ const uploadFileWithMetadata = (file, caption) => {
     });
 };
 
+const getAudioDuration = (audioFile) => {
+  return new Promise((resolve, reject) => {
+    const audioElement = new Audio();
+    audioElement.onloadedmetadata = () => {
+      resolve(audioElement.duration);
+    };
+    audioElement.onerror = (error) => {
+      reject(error);
+    };
 
+    // Load the audio file
+    audioElement.src = URL.createObjectURL(audioFile);
+  });
+};
 
 
 const startRecording = async () => {
@@ -95,14 +108,36 @@ const startRecording = async () => {
 const stopRecording = () => {
   if (mediaRecorder.current && mediaRecorder.current.state === "recording") {
     mediaRecorder.current.stop();
+
+    
+
     setRecording(false);
+
+
+    
   }
 };
  
 
 const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
 
+
+const audioElement = new Audio(URL.createObjectURL(audioBlob));
+
+  // Listen for the "loadedmetadata" event to get the duration
+  audioElement.oncanplaythrough = () => {
+    const durationInSeconds = audioElement.duration;
+    console.log("Duration of recorded audio:", durationInSeconds, "seconds");
+  };
+
+  audioElement.load(); 
+
 const audioFile = new File([audioBlob], "audio.wav", { type: "audio/wav" });
+
+
+
+
+console.log(audioBlob)
 
 const handleUploadFile = () => {
   

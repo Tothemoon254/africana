@@ -6,9 +6,8 @@ import { FaPause } from "react-icons/fa"
 import { UserAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 
-const AudioPlayer = ( { src, path, caption } ) => {
-  // state 
-  const { user } = UserAuth()
+const BigAudioPlayer = ( { src, path, caption } ) => {
+  // state
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -16,13 +15,18 @@ const AudioPlayer = ( { src, path, caption } ) => {
   // references
   const audioPlayer = useRef();   // reference our audio component
   const progressBar = useRef();   // reference our progress bar
-  const animationRef = useRef();  // reference the animation
+  const animationRef = useRef(); 
+ // reference the animation
+ const { user } = UserAuth()
+ 
 
   useEffect(() => {
     const seconds = Math.floor(audioPlayer.current.duration);
     setDuration(seconds);
     progressBar.current.max = seconds;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
+
+  const audioElement = new Audio(src);
 
   const calculateTime = (secs) => {
     const minutes = Math.floor(secs / 60);
@@ -50,6 +54,7 @@ const AudioPlayer = ( { src, path, caption } ) => {
     animationRef.current = requestAnimationFrame(whilePlaying);
   }
 
+
   const changeRange = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
     changePlayerCurrentTime();
@@ -69,13 +74,13 @@ const AudioPlayer = ( { src, path, caption } ) => {
     progressBar.current.value = Number(progressBar.current.value + 30);
     changeRange();
   }
-  console.log(audioPlayer)
+  
 
   return (
 //The path parameter is used to get th internal path of the file from storage, e.g "audio/wbvrvar" as it is significantly easier to use as a dynamic url    
     <div>
       
-    <div className=" grid w-[95%] m-3 h-[90px] sm:w-[500px] sm:h-[120px] border-2 border-black rounded-[15px] shadow-custom justify-start  ">
+    <div className=" grid w-[95%] m-3  sm:w-[500px] sm:h-[120px] border-2 border-black rounded-[15px] shadow-custom justify-start  ">
 
       <div className='flex items-center sm:pt-3 px-5'>
       <audio ref={audioPlayer} src={src} type= 'audio/wav' preload="metadata"></audio>
@@ -109,4 +114,4 @@ const AudioPlayer = ( { src, path, caption } ) => {
   )
 }
 
-export default AudioPlayer;
+export default BigAudioPlayer;
