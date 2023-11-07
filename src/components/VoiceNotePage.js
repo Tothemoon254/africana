@@ -77,7 +77,7 @@ function VoiceNotePage(){
         ">
         {items.map((data) => {
 
-       return <BigAudioPlayer src={data.url} caption={data.metadata.customMetadata.caption}/>;
+       return <BigAudioPlayer src={data.url} path={data.metadata.fullPath} customMetadata={data.metadata.customMetadata}/>;
 
 })}
             <div>

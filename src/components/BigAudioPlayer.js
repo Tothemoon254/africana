@@ -6,7 +6,7 @@ import { FaPause } from "react-icons/fa"
 import { UserAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 
-const BigAudioPlayer = ( { src, path, caption } ) => {
+const BigAudioPlayer = ( {src, path, customMetadata} ) => {
   // state
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -22,7 +22,7 @@ const BigAudioPlayer = ( { src, path, caption } ) => {
 
   useEffect(() => {
     const seconds = Math.floor(audioPlayer.current.duration);
-    setDuration(seconds);
+    setDuration(customMetadata?.duration);
     progressBar.current.max = seconds;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
@@ -80,9 +80,9 @@ const BigAudioPlayer = ( { src, path, caption } ) => {
 //The path parameter is used to get th internal path of the file from storage, e.g "audio/wbvrvar" as it is significantly easier to use as a dynamic url    
     <div>
       
-    <div className=" grid w-[95%] m-3  sm:w-[500px] sm:h-[120px] border-2 border-black rounded-[15px] shadow-custom justify-start  ">
+    <div className=" grid w-[95%] m-3  sm:w-[500px] sm:h-[200px] border-2 border-black rounded-[15px] shadow-custom justify-start  ">
 
-      <div className='flex items-center sm:pt-3 px-5'>
+      <div className='flex items-center sm:pt-3 px-5 '>
       <audio ref={audioPlayer} src={src} type= 'audio/wav' preload="metadata"></audio>
       <button className="bg-none border-none flex items-center font-mono text-[16px] cursor-pointer hover:text-gray-700" onClick={backThirty}><BsArrowLeftShort /> 30</button>
       <button onClick={togglePlayPause} className= "bg-transparent border-none  w-[75px] h-[75px] pr-2 text-[30px] sm:text-[45px] text-[#ffd200] flex justify-center items-center" disabled={!src}>
@@ -100,13 +100,13 @@ const BigAudioPlayer = ( { src, path, caption } ) => {
     
 
       {/* duration */}
-      <div className="font-mono text-[16px] sm:ml-[25px]">{(duration && !isNaN(duration)) && calculateTime(duration)}</div>
+      <div className="font-mono text-[16px] sm:ml-[25px]">{duration}</div>
       </div>
       </div>
 
       
       <Link to={`/${path}`}  className='font-bold text-base sm:text-xl mt-[-20px] text-gray-900 px-5'>
-    {caption}  {user?.displayName}
+    {customMetadata?.caption}  {user?.displayName}
   </Link>
 
     </div>
