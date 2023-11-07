@@ -6,7 +6,7 @@ import { FaPause } from "react-icons/fa"
 import { UserAuth } from '../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 
-const AudioPlayer = ( { src, path, caption } ) => {
+const AudioPlayer = ( { src, path, customMetadata } ) => {
   // state 
   const { user } = UserAuth()
   const [isPlaying, setIsPlaying] = useState(false);
@@ -20,7 +20,8 @@ const AudioPlayer = ( { src, path, caption } ) => {
 
   useEffect(() => {
     const seconds = Math.floor(audioPlayer.current.duration);
-    setDuration(seconds);
+   setDuration(customMetadata?.duration);
+   console.log(duration);
     progressBar.current.max = seconds;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
@@ -80,7 +81,7 @@ const AudioPlayer = ( { src, path, caption } ) => {
       <div className='flex items-center sm:pt-3 px-5'>
       <audio ref={audioPlayer} src={src} type= 'audio/wav' preload="metadata"></audio>
       <button className="bg-none border-none flex items-center font-mono text-[16px] cursor-pointer hover:text-gray-700" onClick={backThirty}><BsArrowLeftShort /> 30</button>
-      <button onClick={togglePlayPause} className= "bg-transparent border-none  w-[75px] h-[75px] pr-2 text-[30px] sm:text-[45px] text-[#ffd200] flex justify-center items-center" disabled={!src}>
+      <button onClick={togglePlayPause} className= "bg-transparent border-none  w-[75px] rounded-[100%] border-2 h-[75px] pr-2 text-[30px] sm:text-[45px] text-[#ffd200] flex justify-center items-center" disabled={!src}>
         {isPlaying ? <FaPause /> : <FaPlay className="  relative left-[5px]" />}
       </button>
       <button className="bg-none border-none flex items-center font-mono text-[16px] cursor-pointer hover:text-gray-700" onClick={forwardThirty}>30 <BsArrowRightShort /></button>
@@ -88,20 +89,19 @@ const AudioPlayer = ( { src, path, caption } ) => {
       {/* current time */}
       <div className='flex items-center'>
       <div className="ml-[12px] sm:ml-[25px] font-mono text-3 sm:text-[16px]">{calculateTime(currentTime)}</div>
-
       {/* progress bar */}
     
         <input type="range" className="progressBar" defaultValue="0" ref={progressBar} onChange={changeRange} />
     
 
       {/* duration */}
-      <div className="font-mono text-[16px] sm:ml-[25px]">{(duration && !isNaN(duration)) && calculateTime(duration)}</div>
+      <div className="font-mono text-[16px] sm:ml-[25px]">{duration}</div>
       </div>
       </div>
 
       
       <Link to={`/${path}`}  className='font-bold text-base sm:text-xl mt-[-20px] text-gray-900 px-5'>
-    {caption}  {user?.displayName}
+    {customMetadata?.caption}  {user?.displayName}
   </Link>
 
     </div>

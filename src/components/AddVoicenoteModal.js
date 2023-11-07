@@ -31,7 +31,7 @@ const toast = useToast();
 const AudioListRef = ref( storage, "audio/");
 
 
-const uploadFileWithMetadata = (file, caption) => {
+const uploadFileWithMetadata = (file, caption, duration) => {
   if (file == null) return;
 
   // Initialize Firebase Storage
@@ -45,8 +45,11 @@ const uploadFileWithMetadata = (file, caption) => {
   const metadata = {
     contentType: 'audio/wav', // The content type of your audio file
     customMetadata: {
-      caption: caption // Your custom caption data
+      caption: caption ,
+      // Your custom caption data
+
       // You can add more custom metadata properties here
+      duration:duration
     },
   };
 
@@ -86,11 +89,58 @@ const getAudioDuration = (audioFile) => {
   });
 };
 
+const [start, setStart] = useState(false);
+const [count, setCount] = useState(0);
+const [time, setTime] = useState("00:00");
+const [timeSetting, setTimeSetting] = useState({ m: 0, s: 0 });
+
+var initTime = new Date();
+
+const showTimer = (ms) => {
+  const milliseconds = Math.floor((ms % 1000) / 10)
+    .toString()
+    .padStart(2, "0");
+  const second = Math.floor((ms / 1000) % 60)
+    .toString()
+    .padStart(2, "0");
+  const minute = Math.floor((ms / 1000 / 60) % 60)
+    .toString()
+    .padStart(2, "0");
+  // const hour = Math.floor(ms / 1000 / 60 / 60).toString();
+  setTime(
+    // hour.padStart(2, "0") +
+    // ":" +
+    minute + ":" + second 
+  );
+};
+
+const clearTime = () => {
+  setTime("00:00:00");
+  setCount(0);
+};
+
+useEffect(() => {
+  if (!start) {
+    return;
+  }
+  var id = setInterval(() => {
+    var left = count + (new Date() - initTime);
+    setCount(left);
+    showTimer(left);
+    if (left <= 0) {
+      setTime("00:00:00:00");
+      clearInterval(id);
+    }
+  }, 1);
+  return () => clearInterval(id);
+}, [start]);
+
 
 const startRecording = async () => {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     mediaRecorder.current = new MediaRecorder(stream);
+    setStart(true);
 
     mediaRecorder.current.ondataavailable = (event) => {
       if (event.data.size > 0) {
@@ -109,8 +159,9 @@ const stopRecording = () => {
   if (mediaRecorder.current && mediaRecorder.current.state === "recording") {
     mediaRecorder.current.stop();
 
-    
 
+    setStart(false)
+    
     setRecording(false);
 
 
@@ -144,7 +195,7 @@ const handleUploadFile = () => {
  
   
   if (audioChunks.length > 0){
-  uploadFileWithMetadata(audioFile, caption);
+  uploadFileWithMetadata(audioFile, caption, time);
   }
 };
 
@@ -183,6 +234,7 @@ function openModal() {
       <button  className="bg-yellow-500 border-black border-2 shadow-custom text-base sm:text-lg py-[12px] px-[12px] m-3"  onClick={playRecording} disabled={audioChunks.length === 0}>
         Play Recording
       </button>
+      {time}
 
       <input
         className="m-3 border-2 border-black py-3 px-3"

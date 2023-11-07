@@ -149,6 +149,7 @@ const audioUrl = URL.createObjectURL(audioBlob);
   function openModal() {
     setShowModal(true);
 }
+console.log(items)
 
   return (
     <div className=" flex  bg-[#FD8D14] place-items-center h-screen top-[120px] pt-[50px] flex-col  ">
@@ -168,7 +169,7 @@ const audioUrl = URL.createObjectURL(audioBlob);
       <div className=" flex bg-[#FD8D14] pt-[150px] place-items-center w-screen flex-col m-3    ">
         {items.map((data) => {
 
-          return <AudioPlayer src={data.url} path={data.metadata.fullPath} caption={data.metadata.customMetadata.caption}/>;
+          return <AudioPlayer src={data.url} path={data.metadata.fullPath} customMetadata={data.metadata.customMetadata}/>;
 
         })}
         </div>
