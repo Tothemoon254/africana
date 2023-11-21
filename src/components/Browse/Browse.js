@@ -54,8 +54,8 @@ function Browse(){
   };
 
   return (
-    <div className="mx-[32px] sm:mx-[64px] pt-[130px] justify-center grid">
-      <span className="text-2xl sm:text-3xl text-[#333333]">Recently Posted Articles</span>
+    <div className="mx-[32px] sm:mx-[64px] pt-[130px] justify-center bg-[#FD8D14]  grid">
+      <span className="text-2xl sm:text-3xl text-[#333333] font-Roboto antialiased">Recently Posted Articles</span>
 
       <div className="my-[16px] sm:my-[32px] bg-[#5bdfdf] shadow-custom rounded-md  flex border-black border-2 h-[48px] w-[90%] sm:w-[100vh] items-center px-3 ">
         
