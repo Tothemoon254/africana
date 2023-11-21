@@ -80,15 +80,7 @@ function VoiceNotePage(){
        return <BigAudioPlayer src={data.url} path={data.metadata.fullPath} customMetadata={data.metadata.customMetadata}/>;
 
 })}
-            <div>
-            <button className="bg-blue-500 py-3 px-3 border-2 border-black shadow-custom"
-                        rightIcon={<LinkIcon />}
-                        onClick={handleShareArticle}
-                       
-                      >
-                        Share
-                      </button>
-            </div>
+            
 
         </div>
     )

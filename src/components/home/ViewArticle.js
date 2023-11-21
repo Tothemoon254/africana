@@ -89,8 +89,8 @@ function ViewArticle() {
         ) : (
           <>
             {article.map((el) => (
-              <div className="px-6 sm:px-10 pt-[90px] sm:pt-[120px]  h-[100%] ">
-                <h1 className="text-4xl sm:text-5xl text-black">{el.content.title}</h1>
+              <div className="px-6 sm:px-9  pt-[105px] sm:pt-[120px] justify-center grid h-[100%] ">
+                <h1 className="text-4xl font-semibold sm:text-5xl text-black">{el.content.title}</h1>
                 <h2 className=" mt-3 text-xl sm:text-2xl opacity-80 text-black">
                   {el.content.subtitle}
                 </h2>

@@ -16,6 +16,7 @@ import { Analytics } from '@vercel/analytics/react';
 import AudioRecorder from './components/AudioRecorder';
 import Account from './components/authentication/Account';
 import VoiceNotePage from './components/VoiceNotePage';
+import Browse from './components/Browse/Browse';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/signup" element={ <Signup/> } />
           <Route path="/login" element={ <Login/> } />
           <Route path="/record" element={ <AudioRecorder/> } />
+          <Route path="/browse" element={ <Browse/> } />
           
           <Route
             path='/gallery'

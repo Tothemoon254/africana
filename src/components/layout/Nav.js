@@ -83,6 +83,9 @@ function Nav() {
             <Link to='/gallery' onClick={showSidebar} className=" flex items-center  border-b-2 border-b-black">
                 <SideBarIcon icon={<FcGallery size="28" />} text ='Gallery'/> <span className="font-bold m-5"> Gallery </span>
             </Link>
+            <Link to='/browse' onClick={showSidebar} className=" flex items-center  border-b-2 border-b-black">
+                  <span className="font-bold m-5"> Browse Stories </span>
+            </Link>
   
         </div>
     );
