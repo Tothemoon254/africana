@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { BsArrowLeftShort } from "react-icons/bs"
 import { BsArrowRightShort } from "react-icons/bs"
+import { MdOutlineIosShare } from "react-icons/md";
 import { FaPlay } from "react-icons/fa"
 import { FaPause } from "react-icons/fa"
 import { UserAuth } from '../contexts/AuthContext'
@@ -26,7 +27,8 @@ const BigAudioPlayer = ( {src, path, customMetadata} ) => {
   useEffect(() => {
     const seconds = Math.floor(customMetadata?.duration);
     setDuration(customMetadata?.duration);
-    progressBar.current.max = duration;
+    console.log(duration)
+    progressBar.current.max = seconds;
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
   const audioElement = new Audio(src);
@@ -91,10 +93,10 @@ const BigAudioPlayer = ( {src, path, customMetadata} ) => {
 //The path parameter is used to get the internal path of the file from storage, e.g "audio/wbvrvar" as it is significantly easier to use as a dynamic url    
     <div>
       
-    <div className="flex flex-col  w-[95%] m-3  sm:w-[900px] sm:h-[300px] border-2 border-black rounded-[15px] shadow-custom justify-center  ">
+    <div className="flex flex-col  w-[95%] m-3  sm:w-[900px] sm:h-[300px] border-2 border-black rounded-[15px] shadow-custom justify-center   ">
 
-      <div className='flex flex-col items-center sm:pt-3 px-7 w-[100%]  '>
-        <div className='flex items-center border-2 border-black bg-blue-500'>
+      <div className='flex flex-col items-center sm:pt-3 px-7 w-[100%]  p-3 '>
+        <div className='flex items-center border-2 h-[100%] w-[100%] my-5 shadow-custom border-black '>
         <button onClick={togglePlayPause} className= "bg-transparent border-r-2 border-r-black  w-[75px] h-[75px] pr-2 text-[30px] sm:text-[45px] text-[#ffd200] flex justify-center items-center" disabled={!src}>
         {isPlaying ? <FaPause /> : <FaPlay className="  relative left-[5px]" />}
       </button>
@@ -112,7 +114,7 @@ const BigAudioPlayer = ( {src, path, customMetadata} ) => {
     
       </div> 
        <div className='flex items-center mb-1 mx-3'>
-      <div className="ml-[12px] sm:ml-[2px] font-mono text-3 sm:text-[16px]">{calculateTime(currentTime)}</div>
+      <div className="ml-[12px] sm:ml-[2px] py-5 font-mono text-3 sm:text-[16px]">{calculateTime(currentTime)}</div>
 
       {/* progress bar */}
     
@@ -124,12 +126,12 @@ const BigAudioPlayer = ( {src, path, customMetadata} ) => {
       
       </div>
        <div className='flex m-3 mr-1'>
-            <button className="bg-blue-500 py-3 px-3 border-2 border-black shadow-custom"
-                        rightIcon={<LinkIcon />}
+            <button className=" py-3 px-3 "
+                        
                         onClick={handleShareArticle}
                        
                       >
-                        Share
+                       <MdOutlineIosShare size={30}/> 
                       </button>
             </div>
     

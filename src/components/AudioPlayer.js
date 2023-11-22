@@ -19,7 +19,7 @@ const AudioPlayer = ( { src, path, customMetadata } ) => {
   const animationRef = useRef();  // reference the animation
 
   useEffect(() => {
-    const seconds = Math.floor(audioPlayer.current.duration);
+    const seconds = Math.floor(customMetadata?.duration);
    setDuration(customMetadata?.duration);
    console.log(duration);
     progressBar.current.max = seconds;
@@ -53,6 +53,7 @@ const AudioPlayer = ( { src, path, customMetadata } ) => {
 
   const changeRange = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
+    
     changePlayerCurrentTime();
   }
 

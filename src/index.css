@@ -39,7 +39,7 @@ code {
     position: relative;
     color: #1E1E1E;
     fill: #333333;
-    width: 100%;
+    width: stretch;
     height: 1px;
     outline: none;
     margin: 7px;
