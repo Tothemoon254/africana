@@ -54,10 +54,10 @@ function Browse(){
   };
 
   return (
-    <div className="mx-[32px] sm:mx-[64px] pt-[130px] justify-center bg-[#FD8D14] grid">
+    <div className="mx-[32px] sm:mx-[64px] pt-[130px] justify-center bg-[#FD8D14] ">
       <span className="text-2xl sm:text-4xl text-[#333333] font-bold antialiased">Recent Stories</span>
 
-      <div className="my-[16px] sm:my-[32px] bg-[#5bdfdf] shadow-custom rounded-md  flex border-black border-2 h-[48px] w-[90%] sm:w-[100vh] items-center px-3 ">
+      <div className="my-[16px] sm:my-[32px] bg-[#5bdfdf] shadow-custom rounded-md  flex border-black border-2 h-[48px] w-[75%] sm:w-[75%] items-center px-3 ">
         
          <SearchIcon color='00000'/>
           <input

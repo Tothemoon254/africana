@@ -19,11 +19,12 @@ const AudioPlayer = ( { src, path, customMetadata } ) => {
   const animationRef = useRef();  // reference the animation
 
   useEffect(() => {
-    const seconds = Math.floor(customMetadata?.duration);
+//    const seconds = Math.floor(customMetadata?.duration);
+
    setDuration(customMetadata?.duration);
    console.log(duration);
-    progressBar.current.max = seconds;
-  }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
+    progressBar.current.max = customMetadata?.duration;
+  }, [customMetadata?.duration]);
 
   const calculateTime = (secs) => {
     const minutes = Math.floor(secs / 60);
@@ -77,7 +78,7 @@ const AudioPlayer = ( { src, path, customMetadata } ) => {
 //The path parameter is used to get th internal path of the file from storage, e.g "audio/wbvrvar" as it is significantly easier to use as a dynamic url    
     <div>
       
-    <div className=" grid w-[95%] m-3 h-[90px] sm:w-[500px] sm:h-[120px] border-2 border-black rounded-[15px] shadow-custom justify-start  ">
+    <div className="  w-[375px] m-3   h-[105px] sm:w-[500px] sm:h-[120px] border-2 border-black rounded-[15px] shadow-custom justify-start  ">
 
       <div className='flex items-center sm:pt-3 px-5'>
       <audio ref={audioPlayer} src={src} type= 'audio/wav' preload="metadata"></audio>

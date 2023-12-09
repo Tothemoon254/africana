@@ -96,7 +96,7 @@ const BigAudioPlayer = ( {src, path, customMetadata} ) => {
     <div className="flex flex-col  w-[95%] m-3  sm:w-[900px] sm:h-[300px] border-2 border-black rounded-[15px] shadow-custom justify-center   ">
 
       <div className='flex flex-col items-center sm:pt-3 px-7 w-[100%]  p-3 '>
-        <div className='flex items-center border-2 h-[100%] w-[100%] my-5 shadow-custom border-black '>
+        <div className='flex items-center border-2 h-[100%] w-[100%] my-5 shadow-custom border-black  '>
         <button onClick={togglePlayPause} className= "bg-transparent border-r-2 border-r-black  w-[75px] h-[75px] pr-2 text-[30px] sm:text-[45px] text-[#ffd200] flex justify-center items-center" disabled={!src}>
         {isPlaying ? <FaPause /> : <FaPlay className="  relative left-[5px]" />}
       </button>
