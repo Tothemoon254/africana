@@ -1,7 +1,7 @@
 import React from "react";
 
 
-import AfricanaLogo from '../../assets/AfricanaLogo.svg'
+import NewAfricanaLogo from "../../assets/NewAfricanaLogo.png"
 
 import { Link } from "react-router-dom";
 
@@ -32,7 +32,7 @@ function Dashboard() {
               </Link>
             </div>
             <div className=" flex justify-center items-center">
-              <img src={AfricanaLogo} alt="logo" className=" h-[300px] sm:h-[750px] m-2" />
+              <img src={NewAfricanaLogo} alt="logo" className=" h-[300px] sm:h-[750px] m-2" />
             </div>
           </div>
           <div className="border-b-2 border-b-black my-8"></div>
