@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  filter: contrast(320%) brightness(100%);
+  background: 
+	linear-gradient(0deg, rgba(0,33,55,1), rgba(245,32,32,0)),
+	url(/public/images/noise.svg);
+  height: 100vh;
+  width: 100vh;
 }
 
 .App-logo {

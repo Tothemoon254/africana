@@ -12,10 +12,10 @@ function Dashboard() {
   
 
   return (
-    <div className="flex justify-center items-center bg-[#fd8c14f5] " >
+    <div className="flex justify-center items-center  bg-[#FD8D14] " >
       <div className="w-[100vw] flex justify-center flex-col">
         
-
+           
         <div className="px-6" >
           <div className="flex justify-between flex-col-reverse sm:flex-row mt-11">
             <div className="flex justify-center items-start flex-col">
@@ -31,8 +31,8 @@ function Dashboard() {
                 Start writing
               </Link>
             </div>
-            <div className=" flex justify-center items-center">
-              <img src={NewAfricanaLogo} alt="logo" className=" h-[300px] sm:h-[750px] m-2" />
+            <div className=" flex justify-center items center">
+              <img src={NewAfricanaLogo} alt="logo" className=" h-[300px] sm:h-[750px] m-2 " />
             </div>
           </div>
           <div className="border-b-2 border-b-black my-8"></div>

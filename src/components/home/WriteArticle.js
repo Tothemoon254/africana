@@ -79,7 +79,7 @@ function WriteArticle() {
   return (
     <div className="flex justify-center items-center bg-[#FD8D14] min-h-screen ">
       <div
-      className="flex w-[100vw] sm:w-[100vw] justify-center  flex-col"
+      className="flex w-[100vw] sm:mt-11 sm:w-[100vw] justify-center  flex-col"
       >
         
 

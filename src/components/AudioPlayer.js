@@ -19,12 +19,10 @@ const AudioPlayer = ( { src, path, customMetadata } ) => {
   const animationRef = useRef();  // reference the animation
 
   useEffect(() => {
-//    const seconds = Math.floor(customMetadata?.duration);
-
-   setDuration(customMetadata?.duration);
-   console.log(duration);
-    progressBar.current.max = customMetadata?.duration;
-  }, [customMetadata?.duration]);
+    const seconds = Math.floor(customMetadata?.duration);
+    setDuration(seconds);
+    progressBar.current.max = seconds;
+  }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
   const calculateTime = (secs) => {
     const minutes = Math.floor(secs / 60);
@@ -78,7 +76,7 @@ const AudioPlayer = ( { src, path, customMetadata } ) => {
 //The path parameter is used to get th internal path of the file from storage, e.g "audio/wbvrvar" as it is significantly easier to use as a dynamic url    
     <div>
       
-    <div className="  w-[375px] m-3   h-[105px] sm:w-[500px] sm:h-[120px] border-2 border-black rounded-[15px] shadow-custom justify-start  ">
+    <div className="  w-[375px] m-3 h-[105px] sm:w-[500px] sm:h-[120px] border-2 border-black rounded-[15px] shadow-custom justify-start  ">
 
       <div className='flex items-center sm:pt-3 px-5'>
       <audio ref={audioPlayer} src={src} type= 'audio/wav' preload="metadata"></audio>
@@ -97,13 +95,13 @@ const AudioPlayer = ( { src, path, customMetadata } ) => {
     
 
       {/* duration */}
-      <div className="font-mono text-[16px] sm:ml-[25px]">{duration}</div>
+      <div className="font-mono text-[16px] sm:ml-[25px]">{(customMetadata?.duration && !isNaN(customMetadata?.duration)) && calculateTime(customMetadata?.duration)}</div>
       </div>
       </div>
 
       
-      <Link to={`/${path}`}  className='font-bold text-base sm:text-xl mt-[-20px] text-gray-900 px-5'>
-    {customMetadata?.caption}  {user?.displayName}
+      <Link to={`/${path}`}  className='font-bold m-1 text-base sm:text-xl mt-[-20px] text-gray-900 px-5'>
+    {customMetadata?.caption} : {'Author'}
   </Link>
 
     </div>

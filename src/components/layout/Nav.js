@@ -81,7 +81,8 @@ function Nav() {
                 <span className="font-bold m-5"> Audio Poetry </span></Link>
 
             <Link to='/gallery' onClick={showSidebar} className=" flex items-center  border-b-2 border-b-black">
-                <SideBarIcon icon={<FcGallery size="28" />} text ='Gallery'/> <span className="font-bold m-5"> Gallery </span>
+                 <span className="font-bold m-5"> Gallery </span>
+                 <FcGallery size={30}/>
             </Link>
             <Link to='/browse' onClick={showSidebar} className=" flex items-center  border-b-2 border-b-black">
                   <span className="font-bold m-5"> Browse Stories </span>

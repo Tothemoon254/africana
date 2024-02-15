@@ -16,9 +16,16 @@ code {
 
 
 @layer base {
-  :root {
+  :root { 
+    background: url(/public//images//noise.svg) repeat
+    center;
+    background-blend-mode: overlay;
+    height: 100%;
+    width: 100%;
+  
+    
     --color-primary: 0 0 0;
-    --bar-bg: #000000;
+    
     --color-secondary: 0 0 0;
     --seek-before-width: 0;
     --seek-before-color: #333333;
@@ -77,9 +84,28 @@ code {
     transform: scale(1.2);
     background: var(--selectedKnobby);
   }
+  .noise {
+    /* ... */
+    background:
+    
+      url(https://grainy-gradients.vercel.app/noise.svg);
+  }
+
+  .image{
+    
+    align-items: center;
+    justify-content: center;
+    background: url(/public//images//noise.svg);
+    height: 100%;
+    width: 100%;
+    margin: 3;
+  }
 }
 
 @layer components{
+
+
+ 
 
 
   .top-Navbar{
